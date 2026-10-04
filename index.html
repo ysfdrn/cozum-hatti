@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anasayfa - Çözüm Hattı</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='fi' x1='8' y1='8' x2='92' y2='92' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%236fd196'/%3E%3Cstop offset='.55' stop-color='%232fae66'/%3E%3Cstop offset='1' stop-color='%232f8fd1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='7' y='7' width='86' height='86' rx='23' fill='url(%23fi)'/%3E%3Cpath d='M50 78S22 60.5 22 41.5C22 30 30.5 23 40 23c4.8 0 8.6 2.1 10 5.4C51.4 25.1 55.2 23 60 23c9.5 0 18 7 18 18.5C78 60.5 50 78 50 78Z' fill='%23fbfdfc'/%3E%3Cpath d='M39 44.5 46 51.5 63 34' stroke='%232f8fd1' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,800&family=Baloo+2:wght@700;800&family=Montserrat:wght@400;700;800&family=Tinos:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafdfb; --bg2:#eafff6; --card:#ffffff; --line:#cdeae0;
+  --txt:#16305c; --sub:#4a726c;
+  --green:#0ad676; --green-dark:#08a85d; --blue:#0090ff; --blue-dark:#0072cc;
+  --grad:linear-gradient(120deg,#0ad676 0%,#0090ff 100%);
+  --open:#ff6b5e; --progress:#ffb648; --done:#0ad676;
+  --radius:18px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#fafdfb; --bg2:#eafff6; --card:#ffffff; --line:#cdeae0; --txt:#16305c; --sub:#4a726c;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.brand,.big{font-family:"Space Grotesk",Inter,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(250,253,251,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) header{background:rgba(255,255,255,.85)}}
+.headrow{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+.brand{font-family:"Montserrat",sans-serif;font-weight:800;font-size:1.15rem;display:flex;align-items:center;gap:9px}
+.brand .logo{width:30px;height:30px;flex-shrink:0}
+.brand-grad-app{font-family:"Montserrat",sans-serif;font-weight:400;color:#4dd8f0}
+.roletag{font-size:.78rem;font-weight:700;color:var(--green);background:rgba(10,214,118,.12);border:1px solid rgba(10,214,118,.3);border-radius:12px;padding:8px 14px;line-height:1}
+.roletag.gov{color:var(--blue);background:rgba(0,144,255,.12);border-color:rgba(0,144,255,.3)}
+.roletag.admin{color:#c8449c;background:rgba(200,68,156,.12);border-color:rgba(200,68,156,.32)}
+.locbar{display:flex;gap:8px;overflow-x:auto;padding:0 20px 12px}
+.locbar select{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:.85rem;font-family:inherit}
+.locstatic{padding:0 20px 12px;font-size:.85rem;font-weight:600;color:var(--sub)}
+.locstatic span{color:var(--txt)}
+.hero{padding:34px 20px 10px;text-align:left}
+.hero h1{font-size:2rem;line-height:1.15;margin:0 0 8px;font-weight:700}
+.hero p{color:var(--sub);margin:0 0 20px;max-width:34ch}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:none;border-radius:16px;padding:16px 22px;font-weight:700;font-size:1rem;font-family:inherit;cursor:pointer;transition:transform .15s ease}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:linear-gradient(120deg,#17d3ff 0%,#0090ff 100%);color:#fff;box-shadow:0 6px 16px -8px rgba(0,144,255,.45)}
+.btn-report-cta{position:relative;background:#fff;color:#16305c;border:1.5px solid rgba(0,144,255,.55);
+  box-shadow:inset 0 0 26px rgba(0,144,255,.22),inset 0 0 6px rgba(0,144,255,.12),0 6px 16px -10px rgba(0,144,255,.22);
+  overflow:hidden}
+.btn-report-cta::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 38%,rgba(0,144,255,.16) 100%)}
+.btn-report-cta:hover{border-color:rgba(0,144,255,.8);box-shadow:inset 0 0 30px rgba(0,144,255,.3),inset 0 0 8px rgba(0,144,255,.16),0 8px 18px -10px rgba(0,144,255,.3)}
+.btn-soft-green{background:#5fd9a4!important;color:#073d2a!important;box-shadow:0 6px 14px -8px rgba(95,217,164,.6)}
+.btn-soft-green:hover{background:#4ecb94!important}
+.btn-secondary{background:var(--card);color:var(--txt);border:1px solid var(--line)}
+.btn-ghost{background:transparent;color:var(--blue);border:1px solid var(--line);padding:8px 13px;font-size:.78rem;border-radius:12px;cursor:pointer;font-family:inherit;font-weight:400}
+.btn-logout{background:transparent;color:var(--sub);border:1px solid var(--line);padding:8px 14px;font-size:.78rem;border-radius:12px;cursor:pointer;font-family:inherit}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:24px 20px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 10px;text-align:center}
+.stat b{display:block;font-size:1.4rem;font-family:"Space Grotesk"}
+.stat span{color:var(--sub);font-size:.72rem}
+.gov-stats{margin:0 20px;padding:18px 18px 4px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+.gov-stats .stats{padding:14px 0 4px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:640px){.gov-stats .stats{grid-template-columns:repeat(4,1fr)}}
+.gov-stats-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.gov-stats-head h2{margin:0;font-size:1.02rem}
+.gov-stats-head span{color:var(--sub);font-size:.75rem}
+.gov-stats .stat{background:var(--bg2)}
+.gov-msg-box{margin-top:16px;padding:16px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);max-width:560px}
+.gov-msg-box label{display:block;font-size:.78rem;font-weight:700;color:var(--txt);margin-bottom:8px}
+.gov-msg-box textarea{width:100%;min-height:68px;resize:vertical;border:1.5px solid var(--line);border-radius:12px;
+  padding:10px 12px;font-family:inherit;font-size:.85rem;color:var(--txt);outline:none;background:var(--card);
+  transition:border-color .18s ease}
+.gov-msg-box textarea:focus{border-color:var(--blue)}
+.gov-msg-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap}
+.gov-msg-hint{font-size:.7rem;color:var(--sub);line-height:1.4;max-width:340px}
+.gov-msg-actions .btn{padding:9px 20px;font-size:.82rem}
+.detail-photo-img{width:100%;max-height:260px;object-fit:cover;border-radius:14px;margin:10px 0;display:block}
+.proof-box{margin-top:12px;background:rgba(10,214,118,.08);border:1px solid rgba(10,214,118,.3);border-radius:14px;padding:12px 14px}
+.proof-box b{font-size:.85rem;display:block;margin-bottom:8px}
+.proof-box img{width:100%;max-height:220px;object-fit:cover;border-radius:12px;display:block}
+section{padding:10px 20px 30px}
+.sec-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sec-title h2{font-size:1.1rem;margin:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.filters select,.filters input{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:9px 12px;font-size:.85rem;font-family:inherit}
+.filters input{flex:1;min-width:140px}
+.grid{display:grid;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;cursor:pointer;transition:border-color .15s,transform .15s ease,box-shadow .15s ease}
+.card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(0,0,0,.35)}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cat-tag{font-size:.72rem;font-weight:700;color:var(--sub);background:var(--bg2);border:1px solid var(--line);border-radius:99px;padding:5px 11px;white-space:nowrap}
+.badge{font-size:.7rem;font-weight:700;padding:5px 10px;border-radius:99px;white-space:nowrap}
+.b-open{background:rgba(255,107,94,.15);color:var(--open)}
+.b-progress{background:rgba(255,182,72,.15);color:var(--progress)}
+.b-done{background:rgba(61,220,151,.15);color:var(--done)}
+.card h3{margin:8px 0 4px;font-size:1rem}
+.card-desc{color:var(--sub);font-size:.82rem;line-height:1.45;margin:0 0 8px}
+.meta{color:var(--sub);font-size:.78rem;display:flex;gap:6px;flex-wrap:wrap}
+.meta b{color:var(--txt);font-weight:600}
+.card-bottom-row{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.card-time{color:var(--sub);font-size:.72rem}
+.card-mini-tag{color:var(--blue);font-size:.72rem;font-weight:600;background:rgba(0,144,255,.1);border-radius:99px;padding:3px 9px}
+.card-bottom{display:flex;justify-content:flex-end;margin-top:10px}
+.vote-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--line);color:var(--sub);
+  border-radius:99px;padding:6px 12px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s ease}
+.vote-btn:hover{border-color:var(--blue);color:var(--blue)}
+.vote-btn.voted{background:rgba(0,144,255,.14);border-color:var(--blue);color:var(--blue)}
+.vote-btn:active{transform:scale(.94)}
+.vote-btn-lg{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);color:var(--sub);
+  border-radius:99px;padding:10px 18px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s ease;margin-top:12px}
+.vote-btn-lg:hover{border-color:var(--blue);color:var(--blue)}
+.vote-btn-lg.voted{background:rgba(0,144,255,.14);border-color:var(--blue);color:var(--blue)}
+.num{font-family:"Space Grotesk";color:var(--sub);font-size:.72rem}
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px}
+.pin{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;cursor:pointer}
+.pin .dot{width:14px;height:14px;border-radius:50%;margin:0 auto 6px}
+.pin small{color:var(--sub);font-size:.68rem}
+@keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes modalPopIn{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-bg{position:fixed;inset:0;background:rgba(4,12,15,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:none;align-items:flex-end;justify-content:center;z-index:50}
+.modal-bg.show{display:flex;animation:modalFadeIn .2s ease}
+.modal-bg.show .modal{animation:modalSlideUp .32s cubic-bezier(.22,1,.36,1)}
+@media(min-width:640px){.modal-bg.show .modal{animation:modalPopIn .34s cubic-bezier(.34,1.56,.64,1)}}
+.modal{position:relative;background:var(--bg2);width:100%;max-width:560px;border-radius:26px 26px 0 0;
+  padding:26px 22px calc(26px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow-y:auto;overflow-x:hidden;
+  border:1px solid var(--line);box-shadow:0 -20px 60px -20px rgba(0,0,0,.5)}
+.modal::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,#0ad676,#0090ff,#0ad676);background-size:200% auto;animation:lmBarSlide 4s linear infinite}
+@media(min-width:640px){.modal-bg{align-items:center}.modal{border-radius:24px}.modal::before{border-radius:24px 24px 0 0}}
+.modal h2{margin:0 0 14px;font-family:"Space Grotesk"}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.8rem;color:var(--sub);margin-bottom:6px;font-weight:600}
+.field select,.field input,.field textarea{width:100%;background:var(--card);border:1.5px solid var(--line);color:var(--txt);
+  border-radius:13px;padding:11px 13px;font-family:inherit;font-size:.9rem;outline:none;transition:border-color .18s ease,box-shadow .18s ease}
+.field select:focus,.field input:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,144,255,.15)}
+.field textarea{min-height:80px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.chipwrap{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--txt);border-radius:99px;padding:8px 15px;font-size:.8rem;
+  font-weight:600;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.chip:hover{transform:translateY(-1px);border-color:var(--blue)}
+.chip.sel{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 16px -8px rgba(10,214,118,.5)}
+.cat-chip{position:relative;overflow:visible}
+.cat-chip.sel{background:var(--card);color:var(--txt);border-color:var(--line);box-shadow:none;transform:none}
+.cat-chip .cat-check{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;background:#0ad676;color:#fff;
+  font-size:.58rem;line-height:1;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);
+  transition:opacity .15s ease,transform .15s ease;box-shadow:0 2px 6px -1px rgba(10,214,118,.5)}
+.cat-chip.sel .cat-check{opacity:1;transform:scale(1)}
+.close-x{position:sticky;top:0;float:right;background:var(--card);border:1.5px solid var(--line);border-radius:99px;
+  width:36px;height:36px;color:var(--txt);font-size:1.1rem;cursor:pointer;transition:transform .2s ease,border-color .2s ease,color .2s ease;z-index:2}
+.close-x:hover{transform:rotate(90deg);border-color:var(--blue);color:var(--blue)}
+.detail-badge{margin-bottom:8px}
+.detail-desc-box{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0 10px}
+.detail-desc-label{margin:0 0 4px;font-size:.72rem;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.02em}
+.detail-desc-text{margin:0;color:var(--txt);font-size:.9rem;line-height:1.5}
+.detail-photo{width:100%;height:160px;border-radius:14px;background:linear-gradient(135deg,#eafff6,#e3f4ff);display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:.8rem;margin:10px 0}
+.timeline{margin:6px 0 6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.tl-step{display:flex;align-items:flex-start;gap:12px;position:relative;padding-bottom:18px}
+.tl-step:last-child{padding-bottom:0}
+.tl-step:not(:last-child)::before{content:"";position:absolute;left:6px;top:16px;bottom:-2px;width:2px;background:var(--line)}
+.tl-step.reached:not(:last-child)::before{background:var(--done)}
+.tl-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px;background:var(--line);border:2px solid var(--line);z-index:1}
+.tl-dot.tl-open{background:var(--open);border-color:var(--open)}
+.tl-dot.tl-progress{background:var(--progress);border-color:var(--progress)}
+.tl-dot.tl-done{background:var(--done);border-color:var(--done)}
+.tl-txt{display:flex;flex-direction:column;gap:2px}
+.tl-txt b{font-size:.85rem;color:var(--txt)}
+.tl-step:not(.reached) .tl-txt b{color:var(--sub);font-weight:600}
+.tl-txt span{font-size:.72rem;color:var(--sub)}
+.gov-note{background:rgba(0,144,255,.1);border:1px solid rgba(0,144,255,.3);border-radius:14px;padding:12px 14px;margin-top:12px;font-size:.85rem}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;padding:12px 20px;border-radius:14px;font-weight:700;font-size:.85rem;z-index:200;display:none;box-shadow:0 8px 24px -6px rgba(10,214,118,.5)}
+footer{text-align:center;color:var(--sub);font-size:.75rem;padding:20px;border-top:1px solid var(--line)}
+.empty{color:var(--sub);text-align:center;padding:30px 10px;font-size:.85rem}
+
+/* Landing / Anasayfa — açık, camsı/bevel referans tasarım */
+:root{ --amber:#ffb648; --coral2:#ff6b5e; --violet:#8b6bff;
+  --lnavy:#0a3330; --lteal:#0090ff; --lteal2:#17d3ff; --lorange:#0ad676; --lcard:#ffffff; --lline:#cdeae0; --lsub:#4a726c; }
+
+.brand-wordmark{font-family:"Montserrat",sans-serif;letter-spacing:.005em;white-space:nowrap;text-transform:none;display:inline-flex!important;align-items:baseline;gap:.22em}
+.brand-wordmark .w1,.brand-wordmark .w2{text-transform:none;letter-spacing:inherit;font-size:inherit;display:inline!important}
+.brand-wordmark .w1{font-weight:600;color:#0ad676}
+.brand-wordmark .w2{font-weight:300;color:#0ad676}
+.brand-wordmark-nav .w1{color:#0ad676}
+.brand-wordmark-nav .w2{color:#0ad676}
+
+
+
+#landing{min-height:100%;position:relative;padding-bottom:60px;
+  background:#fafdfb;color:var(--lnavy)}
+.blob-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(75px);pointer-events:none;z-index:0}
+.blob1{width:440px;height:440px;background:#3dfca3;top:-80px;left:-90px;opacity:.6}
+.blob2{width:380px;height:380px;background:#20d0ff;top:0px;left:280px;opacity:.55}
+.blob3{width:560px;height:560px;background:#0fe0f0;top:-100px;right:-140px;opacity:.55}
+.blob4{width:400px;height:400px;background:#1cf5a8;bottom:20px;left:120px;opacity:.55}
+.blob5{width:380px;height:380px;background:#20d0ff;bottom:-100px;right:40px;opacity:.45}
+
+.landing-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;position:sticky;top:0;z-index:30;flex-wrap:wrap;
+  background:linear-gradient(120deg,#0a3330,#0d4a42 60%,#0a3330);box-shadow:0 4px 18px -8px rgba(5,30,27,.5)}
+.nav-links{display:flex;flex-direction:column;gap:2px}
+.nav-links a{color:inherit;text-decoration:none;cursor:pointer;transition:opacity .15s}
+.nav-links a:hover{opacity:1;color:#3dfca3}
+.brand-tagline-nav{font-size:.78rem;color:var(--lnavy);opacity:.65;font-weight:600;padding-left:2px}
+.brand-lockup.brand-lockup-nav{margin-bottom:0;gap:10px}
+.brand-lockup-nav .brand-badge{width:34px;height:34px}
+.brand-lockup-nav .hero-brand{font-size:1.08rem;color:#fff}
+.brand-lockup-nav .hero-brand b{color:#4dd8f0}
+.nav-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:flex-end;row-gap:8px}
+.nav-role-links{display:flex;align-items:center;gap:8px}
+.nav-role-link{background:none;border:none;color:#fff;opacity:.88;font-family:inherit;font-size:.8rem;font-weight:600;
+  cursor:pointer;padding:4px 2px;letter-spacing:.01em;transition:opacity .15s ease;white-space:nowrap}
+.nav-role-link:hover{opacity:1;text-decoration:underline}
+.nav-role-sep{color:rgba(255,255,255,.35);font-size:.8rem}
+@media(max-width:480px){.nav-role-link{font-size:.72rem}}
+.nav-search{display:none;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:9px 16px;box-shadow:none}
+.nav-search input{border:none;background:transparent;color:#fff;font-family:inherit;font-size:.82rem;outline:none;width:110px}
+.nav-search input::placeholder{color:rgba(255,255,255,.55)}
+.nav-icbtn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:#3dfca3;font-size:.85rem;box-shadow:none}
+.nav-auth-group{display:flex;align-items:center;gap:10px}
+.nav-admin-btn,.nav-cta{box-sizing:border-box;box-shadow:none;
+  height:36px;padding:0 16px;border-radius:8px;font-weight:600;font-size:.78rem;cursor:pointer;white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  letter-spacing:.01em;position:relative;font-family:inherit;
+  transition:background .15s ease,border-color .15s ease,filter .15s ease}
+.nav-admin-btn,.nav-cta{background:none;border:1px solid rgba(255,255,255,.25);color:#fff}
+.nav-admin-btn:hover,.nav-cta:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.45)}
+.nav-admin-btn:active,.nav-cta:active{background:rgba(255,255,255,.14)}
+@media(max-width:640px){.nav-links{display:none}}
+
+.lb-section{position:relative;z-index:2;max-width:1200px;margin:50px auto 0;padding:0 28px}
+.lb-panel{background:linear-gradient(100deg,#ffffff,#eafff6 60%,#ffffff);border-radius:18px;
+  padding:26px 30px 22px;box-shadow:0 20px 44px -26px rgba(10,51,48,.25);border:1px solid var(--lline)}
+.lb-section-head{padding-bottom:16px;margin-bottom:4px;border-bottom:1px solid var(--lline)}
+.lb-eyebrow{font-family:"Space Grotesk";font-weight:700;font-size:1.05rem;color:#16305c;line-height:1.4}
+.lb-eyebrow b{color:#16305c}
+/* --- Ödül sıralaması (ilk 3) — sade liste, kart/çerçeve yok --- */
+.lb-podium{display:flex;flex-direction:column;margin:22px 0 20px}
+.lb-pod{position:relative;display:grid;grid-template-columns:36px minmax(150px,280px) auto 1fr;align-items:center;gap:16px;
+  width:100%;padding:14px 0;border-bottom:1px solid var(--lline)}
+.lb-pod:last-child{border-bottom:none}
+.lb-pod-rank{flex:none;font-family:"Space Grotesk";font-weight:800;font-size:1.5rem;
+  color:var(--lline);line-height:1}
+.lb-pod.first .lb-pod-rank{color:#e0a422}
+.lb-pod.second .lb-pod-rank{color:#9aa7ac}
+.lb-pod.third .lb-pod-rank{color:#c08a4e}
+.lb-pod-medal{flex:none;width:30px;height:30px}
+.lb-pod.first .lb-pod-medal{width:36px;height:36px}
+.lb-pod-info{min-width:0}
+.lb-pod-nm{font-weight:700;font-size:.86rem;color:var(--lnavy);line-height:1.3}
+.lb-pod.first .lb-pod-nm{font-size:.95rem}
+.lb-pod-ribbon{display:inline-block;margin-top:5px;background:linear-gradient(100deg,#ffcc4d,#e0a422);color:#3a2500;
+  font-weight:800;font-size:.58rem;letter-spacing:.01em;padding:2px 10px;border-radius:99px;white-space:nowrap}
+.lb-pod-bar{margin-top:7px;height:4px;border-radius:3px;background:var(--lline);overflow:hidden;max-width:220px}
+.lb-pod-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--lteal2),var(--lteal))}
+.lb-pod.first .lb-pod-bar i{background:linear-gradient(90deg,#ffcc4d,#e0a422)}
+.lb-pod.second .lb-pod-bar i{background:linear-gradient(90deg,#c3ccd1,#9aa7ac)}
+.lb-pod.third .lb-pod-bar i{background:linear-gradient(90deg,#e4b685,#c08a4e)}
+.lb-pod-ct{flex:none;text-align:left;font-family:"Space Grotesk";font-weight:800;font-size:1.15rem;color:#16305c;line-height:1}
+.lb-pod.first .lb-pod-ct{font-size:1.4rem}
+.lb-pod-lbl{display:block;margin-top:2px;font-weight:500;font-size:.6rem;color:var(--lsub)}
+.lb-msg{min-width:0;margin-left:22px;background:#fafdfb;border:1px dashed var(--lline);border-radius:12px;padding:9px 13px}
+.lb-msg b{display:block;font-size:.58rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--lsub);margin-bottom:3px}
+.lb-msg span{display:block;font-size:.76rem;color:var(--lnavy);line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lb-msg.empty{border-style:dashed}
+.lb-msg.empty span{color:var(--lsub);font-style:italic}
+
+/* --- Geri kalan sıralama: belirgin kart şeridi --- */
+.lb-rest-label{text-align:center;font-size:.68rem;font-weight:700;letter-spacing:.05em;color:var(--lsub);
+  margin:4px 0 12px}
+.lb-modern-strip{position:relative;overflow:hidden}
+.lb-modern-strip::before,.lb-modern-strip::after{content:"";position:absolute;top:0;bottom:0;width:36px;z-index:2;pointer-events:none}
+.lb-modern-strip::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
+.lb-modern-strip::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
+.lb-modern-track{display:flex;align-items:stretch;gap:12px;width:max-content}
+.lb-pill{flex:none;display:flex;align-items:center;gap:11px;padding:13px 20px;
+  background:var(--lcard);border:1px solid var(--lline);border-radius:12px;
+  box-shadow:0 8px 18px -14px rgba(10,51,48,.25)}
+.lb-pill .lb-rk{flex:none;font-family:"Space Grotesk";font-weight:800;font-size:.8rem;color:#fff;
+  background:#16305c;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.lb-pill .lb-nm{font-weight:700;font-size:.88rem;color:var(--lnavy);white-space:nowrap}
+.lb-pill .lb-ct{flex:none;text-align:right;white-space:nowrap}
+.lb-pill .lb-ct b{display:block;font-family:"Space Grotesk";font-weight:800;font-size:1.05rem;color:#16305c;line-height:1.1}
+.lb-pill .lb-ct i{font-style:normal;font-weight:500;color:var(--lsub);font-size:.65rem}
+@media(max-width:900px){.lb-pod{grid-template-columns:32px 1fr auto;row-gap:10px}
+  .lb-msg{grid-column:1/-1;margin-left:48px}}
+@media(max-width:640px){.lb-section{margin-top:38px}.lb-panel{padding:20px 18px 18px;border-radius:14px}
+  .lb-eyebrow{font-size:.92rem}
+  .lb-pod{padding:11px 0;gap:8px 10px}
+  .lb-pod-rank{width:28px;font-size:1.2rem}
+  .lb-pod-medal{width:26px;height:26px}.lb-pod.first .lb-pod-medal{width:30px;height:30px}
+  .lb-pod-nm{font-size:.76rem}.lb-pod.first .lb-pod-nm{font-size:.84rem}
+  .lb-pod-bar{max-width:140px}
+  .lb-pod-ct{font-size:.95rem}.lb-pod.first .lb-pod-ct{font-size:1.15rem}
+  .lb-msg{margin-left:38px}.lb-msg span{font-size:.7rem}
+  .lb-pill{padding:9px 14px}.lb-pill .lb-nm{font-size:.76rem}.lb-pill .lb-ct b{font-size:.86rem}}
+
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;padding:34px 28px 10px;position:relative;z-index:2;max-width:1200px;margin:0 auto}
+@media(max-width:900px){.hero-split{grid-template-columns:1fr;text-align:center}}
+.hero-left{position:relative}
+
+.brand-lockup{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+@media(max-width:900px){.brand-lockup{justify-content:center}}
+.brand-badge{width:52px;height:52px;flex-shrink:0;
+  filter:drop-shadow(0 8px 14px rgba(13,59,58,.28))}
+.brand-lockup .plaque{margin-bottom:0}
+
+.plaque{display:flex;flex-direction:column;justify-content:center}
+.hero-brand{font-family:"Montserrat",sans-serif;font-weight:800;font-size:1.5rem;line-height:1.15;letter-spacing:-.01em;margin:0;
+  color:var(--lnavy)}
+.hero-brand b{font-family:"Montserrat",sans-serif;font-weight:400;color:#17a8e0}
+.brand-tagline{font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--lsub);margin-top:2px}
+@media(max-width:900px){.hero-brand{font-size:1.4rem}}
+
+.hero-tagline{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:2.1rem;line-height:1.2;margin:0 0 10px;
+  letter-spacing:.01em;
+  background:linear-gradient(95deg,#12a3ff,#22e07a);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 14px rgba(34,224,122,.35))}
+@media(max-width:900px){.hero-tagline{text-align:center;font-size:1.65rem}}
+.slogan-ribbon{display:flex;flex-direction:column;gap:8px;margin:0 0 20px}
+@media(max-width:900px){.slogan-ribbon{align-items:center}}
+.slogan-line{display:inline-block;font-family:"Space Grotesk";font-weight:800;font-size:1.7rem;line-height:1.2;
+  padding:8px 22px;border-radius:12px;color:#fff;width:fit-content;position:relative;
+  box-shadow:0 3px 0 rgba(255,255,255,.45) inset,0 10px 18px -8px rgba(13,59,58,.4)}
+.slogan-line.l1{background:none;color:#16305c;box-shadow:none;padding:8px 0;transform:rotate(-1.2deg)}
+.slogan-line.l1::before{display:none}
+.slogan-line.l2{background:linear-gradient(160deg,var(--lteal2),var(--lteal));margin-left:30px;transform:rotate(-1.2deg);
+  box-shadow:0 3px 0 rgba(255,255,255,.45) inset,0 10px 24px -6px rgba(0,144,255,.5)}
+@media(max-width:900px){.slogan-line.l2{margin-left:0}}
+.slogan-line::before{content:"";position:absolute;left:14px;right:14px;top:3px;height:3px;border-radius:3px;background:rgba(255,255,255,.5)}
+
+.landing-desc{color:var(--lsub);max-width:42ch;margin:0 0 26px;font-size:.96rem;line-height:1.6;font-weight:500}
+@media(max-width:900px){.landing-desc{margin-left:auto;margin-right:auto}}
+
+.icon-row{display:flex;gap:22px;margin-bottom:16px}
+@media(max-width:900px){.icon-row{justify-content:center}}
+.icon-tagline{font-family:"Tinos",Georgia,serif;font-weight:700;font-size:1.15rem;color:#16305c;
+  margin:34px 0 28px;letter-spacing:.01em}
+@media(max-width:900px){.icon-tagline{text-align:center}}
+.icon-item{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:default}
+.icon-item span{font-size:.7rem;font-weight:700;color:var(--lsub);letter-spacing:.01em}
+.icon-badge{width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#ffffff,#eef7f5 60%,#e3f2ee 100%);
+  display:flex;align-items:center;justify-content:center;font-size:1.55rem;position:relative;
+  border:3px solid var(--lteal2);transition:transform .2s ease,box-shadow .2s ease;
+  box-shadow:0 2px 0 #fff inset,0 14px 22px -10px rgba(13,59,58,.4)}
+.icon-badge::after{content:"";position:absolute;inset:-3px;border-radius:50%;
+  background:conic-gradient(from 200deg,rgba(31,191,168,.35),transparent 40%);z-index:-1;filter:blur(2px)}
+.icon-badge-text{font-family:"Space Grotesk",sans-serif;font-weight:800;font-size:.76rem;line-height:1.15;
+  letter-spacing:-.01em;text-align:center;padding:4px;text-transform:uppercase}
+.icon-item:nth-child(1) .icon-badge{border-color:#16305c}
+.icon-item:nth-child(2) .icon-badge{border-color:var(--lteal)}
+.icon-item:nth-child(3) .icon-badge{border-color:#0ad676}
+.icon-item:hover .icon-badge{transform:translateY(-4px) scale(1.06);box-shadow:0 2px 0 #fff inset,0 18px 28px -10px rgba(13,59,58,.5)}
+.icon-item:active .icon-badge{transform:translateY(-1px) scale(.98)}
+
+.login-options{display:flex;gap:14px;flex-wrap:wrap}
+@media(max-width:900px){.login-options{justify-content:center}}
+.hero-banner{border-radius:22px;overflow:hidden;box-shadow:0 22px 50px -22px rgba(13,59,58,.5);margin-bottom:6px}
+.hero-banner img{display:block;width:100%;height:auto}
+.hero-banner-blend{margin:-8px 0 6px -12px;max-width:104%}
+.hero-banner-blend img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+@media(max-width:900px){.hero-banner-blend{margin:-4px auto 6px}}
+.login-card{display:flex;align-items:center;gap:13px;text-align:left;border-radius:20px;padding:15px 20px 15px 15px;border:1px solid var(--lline);
+  background:linear-gradient(160deg,#ffffff,#f6fbfa);cursor:pointer;font-family:inherit;position:relative;overflow:hidden;
+  transition:transform .15s ease,box-shadow .15s ease;
+  box-shadow:0 3px 0 #fff inset,0 12px 22px -10px rgba(13,59,58,.32)}
+.login-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+.login-card.citizen::before{background:linear-gradient(var(--lorange),#6fd196)}
+.login-card.gov::before{background:linear-gradient(var(--lteal2),var(--lteal))}
+.login-card:active{transform:scale(.97)}
+.login-card:hover{transform:translateY(-2px);box-shadow:0 3px 0 #fff inset,0 18px 28px -10px rgba(18,137,125,.45)}
+.login-card .ic{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;
+  box-shadow:0 4px 10px -4px rgba(13,59,58,.4) inset}
+.login-card.citizen .ic{background:radial-gradient(circle at 35% 30%,#ffc48a,#ff9a3d);color:#a03d00;box-shadow:0 0 16px -2px rgba(255,154,61,.65)}
+.login-card.gov .ic{background:radial-gradient(circle at 35% 30%,#7fe8c9,#22c98f);color:#04513a;box-shadow:0 0 16px -2px rgba(34,201,143,.65)}
+.login-card .lc-txt b{display:block;font-size:.95rem;margin-bottom:2px;color:var(--lnavy);letter-spacing:-.01em}
+.login-card .lc-txt span{display:block;color:var(--lsub);font-size:.74rem}
+.login-card .lc-go{margin-left:auto;padding-left:8px;color:var(--lline);font-size:1.2rem;font-weight:700;align-self:center;transition:transform .15s ease,color .15s ease}
+.login-card:hover .lc-go{transform:translateX(3px);color:var(--lteal2)}
+.login-card.gov:hover .lc-go{color:var(--lteal2)}
+.landing-note{color:var(--lsub);font-size:.72rem;margin-top:20px;display:flex;align-items:center;gap:6px}
+@media(max-width:900px){.landing-note{text-align:center;justify-content:center}}
+
+/* Hakkımızda & İletişim */
+.landing-info{max-width:1180px;margin:20px auto 0;padding:34px 28px 10px;position:relative;z-index:2}
+.info-grid{display:flex;flex-direction:column;gap:22px}
+.info-card{background:var(--lcard);border:1px solid var(--lline);border-radius:22px;padding:32px 34px;
+  box-shadow:0 18px 40px -24px rgba(13,59,58,.3)}
+.info-ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;
+  background:radial-gradient(circle at 32% 28%,#ffffff,#eef7f5 60%,#e3f2ee 100%);margin-bottom:12px}
+.info-card h3{margin:0 0 14px;font-family:"Space Grotesk";font-size:1.2rem;color:var(--lnavy);line-height:1.3}
+.info-card p{margin:0 0 14px;color:var(--lsub);font-size:.85rem;line-height:1.65;font-weight:500}
+.info-card p:last-of-type{margin-bottom:0}
+.info-card h4{margin:22px 0 12px;font-family:"Space Grotesk";font-size:.92rem;color:var(--lteal);line-height:1.4}
+.about-motto{margin-top:24px;padding-top:22px;border-top:1px solid var(--lline);text-align:center}
+.about-motto b{display:block;font-family:"Space Grotesk";font-size:1.05rem;color:var(--lnavy);margin-bottom:4px}
+.about-motto span{display:block;font-size:.85rem;font-weight:700;color:var(--lorange);letter-spacing:.02em}
+.contact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.contact-list li{display:flex;align-items:center;gap:10px;color:var(--lnavy);font-size:.9rem;font-weight:600}
+.contact-list li span{width:34px;height:34px;border-radius:50%;background:#eaf6fb;border:2px solid var(--lteal2);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.landing-footer{text-align:center;color:var(--lsub);font-size:.76rem;padding:26px 20px 30px;margin-top:8px}
+
+/* Anasayfa alt bağlantılar (Hakkımızda / SSS / İletişim) */
+.bottom-links{max-width:1180px;margin:26px auto 0;padding:0 28px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;z-index:2}
+.bottom-links button{display:flex;align-items:center;gap:9px;background:var(--lcard);border:1px solid var(--lline);color:var(--lnavy);
+  border-radius:99px;padding:13px 24px;font-size:.88rem;font-weight:700;font-family:inherit;cursor:pointer;
+  box-shadow:0 10px 24px -16px rgba(13,59,58,.3);transition:all .15s ease}
+.bottom-links button:hover{border-color:var(--lteal2);transform:translateY(-2px);box-shadow:0 14px 28px -14px rgba(13,59,58,.4)}
+.bl-ic{font-size:1.05rem}
+
+/* Alt sayfalar ortak (Hakkımızda / SSS / İletişim) */
+#aboutPage,#faqPage,#contactPage{min-height:100%;background:#fafdfb;color:var(--lnavy)}
+.subpage-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;position:sticky;top:0;z-index:20;
+  background:rgba(250,253,251,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--lline)}
+.subpage-back{background:var(--lcard);border:1px solid var(--lline);color:var(--lnavy);border-radius:99px;padding:9px 18px;
+  font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer}
+.subpage-back:hover{border-color:var(--lteal2)}
+.subpage-body{max-width:760px;margin:0 auto;padding:40px 28px 70px}
+.subpage-body h1{font-family:"Space Grotesk";font-size:1.7rem;margin:0 0 24px}
+
+/* Hakkımızda sayfası: sidebar + içerik */
+.about-layout{max-width:1180px;margin:0 auto;padding:34px 28px 70px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:start}
+@media(max-width:760px){.about-layout{grid-template-columns:1fr}}
+.about-sidebar{display:flex;flex-direction:column;gap:6px;position:sticky;top:86px}
+@media(max-width:760px){.about-sidebar{position:static;flex-direction:row;flex-wrap:wrap}}
+.about-sidebar a{padding:11px 16px;border-radius:12px;font-size:.88rem;font-weight:700;color:var(--lsub);cursor:pointer;transition:all .15s ease}
+.about-sidebar a:hover{background:var(--lcard);color:var(--lnavy)}
+.about-main section{background:var(--lcard);border:1px solid var(--lline);border-radius:22px;padding:34px 40px;margin-bottom:24px;
+  box-shadow:0 18px 40px -24px rgba(13,59,58,.3)}
+.about-main h1{font-family:"Space Grotesk";font-size:1.3rem;margin:0 0 16px;line-height:1.3}
+.about-main h2{font-family:"Space Grotesk";font-size:1.2rem;margin:0 0 6px}
+.about-main p{margin:0 0 14px;color:var(--lsub);font-size:.85rem;line-height:1.65;font-weight:500}
+.about-main .team-sub{margin-bottom:22px}
+.about-main h4{margin:22px 0 12px;font-family:"Space Grotesk";font-size:.92rem;color:var(--lteal);line-height:1.4}
+.about-columns{column-count:2;column-gap:36px}
+.about-columns p,.about-columns h4{break-inside:avoid}
+@media(max-width:760px){.about-columns{column-count:1}}
+
+/* Biz Kimiz */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:560px){.team-grid{grid-template-columns:1fr}}
+.team-card{text-align:center}
+.avatar{width:84px;height:84px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#cfd8dc;color:#eceff1;box-shadow:0 10px 20px -10px rgba(13,59,58,.4)}
+.avatar svg{width:56px;height:56px}
+.team-card b{display:block;font-size:.9rem;color:var(--lnavy)}
+
+/* SSS akordeon */
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-list details{background:var(--lcard);border:1px solid var(--lline);border-radius:16px;padding:16px 20px;
+  box-shadow:0 10px 24px -18px rgba(13,59,58,.3)}
+.faq-list summary{font-weight:700;font-size:.92rem;cursor:pointer;list-style:none}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::before{content:"+ ";color:var(--lteal);font-weight:800}
+.faq-list details[open] summary::before{content:"– "}
+.faq-list p{margin:12px 0 0;color:var(--lsub);font-size:.85rem;line-height:1.6}
+
+@keyframes lmFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes lmPopIn{0%{opacity:0;transform:scale(.9) translateY(22px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.login-modal-bg{position:fixed;inset:0;background:rgba(9,22,26,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.login-modal-bg.show{display:flex;animation:lmFadeIn .2s ease}
+.login-modal-bg.show .login-modal{animation:lmPopIn .38s cubic-bezier(.34,1.56,.64,1)}
+.login-modal{position:relative;background:#fff;width:100%;max-width:380px;border-radius:28px;padding:36px 28px 28px;
+  box-shadow:0 40px 90px -24px rgba(13,59,58,.55),0 0 0 1px rgba(13,59,58,.05);max-height:92vh;overflow-y:auto;
+  overflow-x:hidden}
+.login-modal::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;border-radius:28px 28px 0 0;
+  background:linear-gradient(90deg,#0ad676,#0090ff,#0ad676);background-size:200% auto;animation:lmBarSlide 4s linear infinite}
+@keyframes lmBarSlide{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.login-modal-close{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;border:1px solid var(--lline);
+  background:var(--lcard);color:var(--lnavy);cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;
+  transition:transform .2s ease,border-color .2s ease,color .2s ease}
+.login-modal-close:hover{border-color:var(--lteal2);color:var(--lteal2);transform:rotate(90deg)}
+.login-modal-title{font-family:"Space Grotesk";font-size:1.3rem;font-weight:700;text-align:center;margin:8px 0 6px;color:var(--lnavy)}
+.login-modal-sub{text-align:center;color:var(--lsub);font-size:.83rem;margin:0 0 22px;line-height:1.5}
+.social-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;padding:12px 16px;
+  font-weight:700;font-size:.86rem;font-family:inherit;cursor:pointer;margin-bottom:10px;transition:transform .18s ease,box-shadow .18s ease}
+.social-btn svg{width:18px;height:18px;flex-shrink:0}
+.social-btn:active{transform:scale(.97)}
+.social-btn:hover{transform:translateY(-2px)}
+.social-fb{background:#1877F2;color:#fff;border:none;box-shadow:0 10px 20px -10px rgba(24,119,242,.5)}
+.social-fb:hover{box-shadow:0 16px 28px -10px rgba(24,119,242,.6)}
+.social-google{background:#fff;color:var(--lnavy);border:1px solid var(--lline)}
+.social-google:hover{border-color:var(--lteal2);box-shadow:0 14px 24px -14px rgba(13,59,58,.3)}
+.login-modal-divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--lsub);font-size:.76rem;font-weight:600}
+.login-modal-divider::before,.login-modal-divider::after{content:"";flex:1;height:1px;background:var(--lline)}
+.login-modal-field{margin-bottom:14px}
+.login-modal-field label{display:block;font-size:.76rem;font-weight:700;color:var(--lnavy);margin-bottom:6px}
+.login-modal-field input{width:100%;background:#fafdfb;border:1.5px solid var(--lline);border-radius:13px;padding:11px 14px;
+  font-family:inherit;font-size:.86rem;color:var(--lnavy);outline:none;transition:border-color .18s ease,box-shadow .18s ease}
+.login-modal-field input:focus{border-color:var(--lteal2);box-shadow:0 0 0 4px rgba(47,142,209,.12)}
+.login-modal-go{width:100%;border:none;border-radius:14px;padding:14px 16px;font-weight:800;font-size:.94rem;font-family:inherit;
+  letter-spacing:.01em;cursor:pointer;color:#fff;background:linear-gradient(120deg,var(--lteal),var(--lteal2));
+  box-shadow:0 14px 28px -12px rgba(47,174,102,.55);margin-top:4px;transition:transform .18s ease,box-shadow .18s ease}
+.login-modal-go:hover{transform:translateY(-2px);box-shadow:0 18px 32px -12px rgba(47,174,102,.65)}
+.login-modal-go:active{transform:scale(.98)}
+.login-modal-signup{text-align:center;font-size:.82rem;color:var(--lsub);margin:16px 0 0}
+.login-modal-demo{margin-top:18px;padding:12px 14px;border-radius:14px;background:#f2f8f8;border:1px dashed var(--lline);font-size:.72rem;color:var(--lsub)}
+.login-modal-demo b{display:block;color:var(--lnavy);font-size:.74rem;margin-bottom:6px}
+.login-modal-demo div{margin-top:3px;line-height:1.5}
+.login-modal-demo span{font-weight:700;color:var(--lnavy)}
+.login-modal-signup a{color:var(--lteal);font-weight:700;cursor:pointer;text-decoration:none}
+.login-modal-signup a:hover{text-decoration:underline}
+
+.gov-quick-list{display:flex;flex-direction:column;gap:10px}
+.gov-quick-item{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border-radius:16px;padding:13px 16px 13px 13px;
+  border:1px solid var(--lline);background:var(--lcard);cursor:pointer;font-family:inherit;position:relative;overflow:hidden;
+  transition:transform .15s ease,box-shadow .15s ease}
+.gov-quick-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--lteal2),var(--lteal))}
+.gov-quick-item:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(18,137,125,.4)}
+.gov-quick-item:active{transform:scale(.97)}
+.gov-quick-item .gq-ic{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;background:radial-gradient(circle at 35% 30%,#7fe8c9,#22c98f);color:#04513a}
+.gov-quick-item .gq-txt{display:flex;flex-direction:column;min-width:0}
+.gov-quick-item .gq-txt b{font-size:.9rem;color:var(--lnavy);letter-spacing:-.01em}
+.gov-quick-item .gq-txt span{font-size:.72rem;color:var(--lsub)}
+.gov-quick-item .gq-go{margin-left:auto;color:var(--lline);font-size:1.1rem;font-weight:700;transition:transform .15s ease,color .15s ease}
+.gov-quick-item:hover .gq-go{transform:translateX(3px);color:var(--lteal2)}
+
+/* Vatandaş Giriş Ekranı (konum seçim ekranı) */
+#citizenGate{min-height:100%;position:relative;overflow:hidden;background:#fafdfb;color:var(--lnavy)}
+.cg-wrap{max-width:640px;margin:0 auto;padding:38px 24px 50px;position:relative;z-index:2}
+.cg-brand{display:flex;align-items:center;gap:12px;margin-bottom:30px}
+.cg-brand svg{width:44px;height:44px;flex-shrink:0}
+.cg-brand b{display:block;font-family:"Montserrat",sans-serif;font-weight:800;font-size:1.05rem;color:var(--lnavy)}
+.cg-brand span{display:block;font-size:.72rem;color:var(--lsub);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.cg-brand b .cg-brand-grad{display:inline;font-size:inherit;text-transform:none;letter-spacing:normal;
+  font-family:"Montserrat",sans-serif;font-weight:400;color:#17a8e0}
+.cg-hero{text-align:center;margin-bottom:30px}
+.cg-hero h1{font-family:"Space Grotesk";font-size:1.7rem;margin:0 0 8px;letter-spacing:-.01em}
+.cg-hero p{color:var(--lsub);margin:0;font-size:.95rem;max-width:44ch;margin:0 auto}
+.cg-features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:34px}
+@media(max-width:600px){.cg-features{grid-template-columns:1fr}}
+.cg-feat{background:var(--lcard);border:1px solid var(--lline);border-radius:18px;padding:18px 14px;text-align:center;
+  box-shadow:0 14px 30px -20px rgba(13,59,58,.3)}
+.cg-ic{width:52px;height:52px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  background:radial-gradient(circle at 32% 28%,#ffffff,#eef7f5 60%,#e3f2ee 100%)}
+.cg-feat b{display:block;font-size:.88rem;margin-bottom:4px;color:var(--lnavy)}
+.cg-feat span{display:block;font-size:.74rem;color:var(--lsub);line-height:1.4}
+.cg-form{background:var(--lcard);border:1px solid var(--lline);border-radius:22px;padding:24px;box-shadow:0 20px 44px -26px rgba(13,59,58,.35)}
+.cg-form .field label{display:block;font-size:.76rem;font-weight:700;color:var(--lnavy);margin-bottom:6px}
+.cg-form .field select{width:100%;background:#fff;color:var(--lnavy);border:1px solid var(--lline);border-radius:12px;padding:11px 12px;font-size:.9rem;font-family:inherit}
+.cg-form .field{margin-bottom:14px}
+.cg-locate{width:100%;border:1.5px dashed var(--lteal2);background:#f2fbf8;color:var(--lteal);border-radius:14px;padding:13px;
+  font-weight:700;font-size:.9rem;font-family:inherit;cursor:pointer;transition:all .15s ease}
+.cg-locate:hover{background:#e6f7f1;border-color:var(--lteal)}
+.cg-locate:disabled{opacity:.6;cursor:wait}
+.cg-or{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--lsub);font-size:.72rem;font-weight:600}
+.cg-or::before,.cg-or::after{content:"";flex:1;height:1px;background:var(--lline)}
+#reportModal .cg-locate{border:1.5px dashed var(--blue);background:rgba(0,144,255,.08);color:var(--blue)}
+#reportModal .cg-locate:hover{background:rgba(0,144,255,.15);border-color:var(--blue-dark)}
+#reportModal .cg-or{color:var(--sub)}
+#reportModal .cg-or::before,#reportModal .cg-or::after{background:var(--line)}
+.cg-go{width:100%;border:none;border-radius:14px;padding:15px;font-weight:700;font-size:.96rem;font-family:inherit;cursor:pointer;color:#fff;
+  background:linear-gradient(120deg,var(--lorange),#6fd196);box-shadow:0 12px 24px -8px rgba(47,174,102,.5);transition:transform .15s ease}
+.cg-go:active{transform:scale(.97)}
+.cg-back{display:block;margin:18px auto 0;background:none;border:none;color:var(--lsub);font-size:.82rem;font-family:inherit;cursor:pointer}
+.cg-back:hover{color:var(--lnavy)}
+
+/* Canlı Sorun Takip Haritası paneli */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center;padding:30px 0}
+.map-panel-img{width:100%;max-width:620px}
+
+/* Telefon / uygulama mockup'ı */
+.phone-mockup{position:relative;width:272px}
+.phone-glow{position:absolute;inset:-40px;background:radial-gradient(circle,rgba(23,211,255,.35),transparent 70%);
+  filter:blur(10px);z-index:0}
+.phone-frame{position:relative;z-index:1;background:#0e2435;border-radius:42px;padding:12px;
+  box-shadow:0 30px 60px -22px rgba(13,59,58,.5),0 0 0 2px rgba(255,255,255,.06) inset}
+.phone-notch{width:84px;height:20px;background:#0e2435;border-radius:0 0 14px 14px;position:absolute;
+  top:12px;left:50%;transform:translateX(-50%);z-index:3}
+.phone-screen{background:#fafdfb;border-radius:32px;overflow:hidden;position:relative}
+.phone-statusbar{display:flex;justify-content:space-between;align-items:center;padding:13px 20px 0;
+  font-family:"Space Grotesk";font-size:.64rem;font-weight:700;color:#16305c}
+.phone-statusbar .ps-icons{display:flex;align-items:center;gap:5px}
+.phone-appbar{display:flex;align-items:center;gap:9px;padding:15px 18px 12px}
+.phone-appbar .pa-ic{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0ad676,#17d3ff);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px -3px rgba(10,214,118,.5)}
+.phone-appbar b{font-family:"Space Grotesk";font-size:.9rem;color:#16305c;letter-spacing:-.01em}
+.phone-map-thumb{margin:0 18px;height:104px;border-radius:16px;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#d8f2e8,#c7e9df 55%,#b9e2d6)}
+.phone-map-thumb svg{position:absolute;inset:0;width:100%;height:100%}
+.phone-section-label{padding:16px 18px 7px;font-size:.64rem;font-weight:800;color:var(--lsub);
+  text-transform:uppercase;letter-spacing:.05em}
+.phone-chip-row{display:flex;gap:6px;padding:0 18px;flex-wrap:wrap}
+.phone-chip{font-size:.66rem;font-weight:700;padding:6px 12px;border-radius:99px;border:1.5px solid var(--lline);color:#16305c}
+.phone-chip.active{background:#16305c;color:#fff;border-color:#16305c}
+.phone-photo-box{margin:14px 18px 0;height:54px;border-radius:14px;border:1.5px dashed var(--lline);
+  display:flex;align-items:center;justify-content:center;gap:6px;color:var(--lsub);font-size:.68rem;font-weight:700}
+.phone-submit{margin:16px 18px 20px;height:44px;border-radius:13px;
+  background:linear-gradient(120deg,#0ad676,#0090ff);display:flex;align-items:center;justify-content:center;gap:7px;
+  color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.01em;box-shadow:0 12px 22px -10px rgba(10,214,118,.5)}
+.phone-float{position:absolute;z-index:2;background:#fff;border-radius:16px;padding:10px 14px;
+  box-shadow:0 16px 30px -14px rgba(13,59,58,.4);display:flex;align-items:center;gap:9px;
+  font-weight:700;font-size:.72rem;color:#16305c;white-space:nowrap}
+.phone-float .pf-ic{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;background:rgba(10,214,118,.14)}
+.phone-float.pf-top{top:-14px;right:-58px}
+@media(max-width:900px){.phone-float{display:none}}
+@media(max-width:480px){.phone-mockup{width:236px}}
+
+/* Soyut / geometrik hero illüstrasyonu */
+.abs-illust{position:relative;width:100%;max-width:520px;aspect-ratio:1/1}
+.abs-blob{position:absolute;border-radius:50%;filter:blur(38px);z-index:0}
+.abs-blob1{width:260px;height:260px;top:4%;left:2%;background:radial-gradient(circle,rgba(23,211,255,.35),transparent 70%)}
+.abs-blob2{width:220px;height:220px;bottom:4%;right:4%;background:radial-gradient(circle,rgba(10,214,118,.3),transparent 70%)}
+.abs-svg{position:relative;z-index:1;width:100%;height:100%;overflow:visible}
+.abs-float{position:absolute;z-index:2;top:8%;right:2%;background:#fff;border-radius:16px;padding:10px 14px;
+  box-shadow:0 16px 30px -14px rgba(13,59,58,.4);display:flex;align-items:center;gap:9px;
+  font-weight:700;font-size:.72rem;color:#16305c;white-space:nowrap}
+.abs-float .af-ic{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;background:rgba(10,214,118,.14)}
+@media(max-width:900px){.abs-float{display:none}.abs-illust{max-width:420px}}
+.abs-panel{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;max-width:520px}
+.abs-caption{margin-top:14px;text-align:center;max-width:380px}
+.abs-caption b{display:block;font-size:.94rem;font-weight:800;color:var(--lnavy);letter-spacing:-.01em;line-height:1.35}
+.abs-caption span{display:block;margin-top:5px;font-size:.78rem;font-weight:500;color:var(--lsub);line-height:1.5}
+@media(max-width:900px){.abs-caption{max-width:320px}}
+.map-panel{position:relative;background:var(--lcard);border:1px solid var(--lline);border-radius:24px;overflow:hidden;
+  width:100%;max-width:460px;box-shadow:0 24px 50px -20px rgba(13,59,58,.35)}
+.map-head{background:linear-gradient(120deg,var(--lnavy),var(--lteal));color:#fff;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;font-family:"Space Grotesk";font-weight:700;font-size:1.05rem}
+.map-body{position:relative;padding:22px 18px;background:
+  radial-gradient(circle,rgba(18,137,125,.12) 1px,transparent 1px) 0 0/16px 16px, #f4faf9;
+  min-height:320px}
+.map-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.node{background:var(--lcard);border:1px solid var(--lline);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 16px -10px rgba(13,59,58,.25)}
+.node .nic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;
+  border:2px solid var(--lteal2);background:#eaf6fb}
+.node b{display:block;font-size:.82rem;color:var(--lnavy)}
+.node .nstatus{font-size:.7rem;font-weight:700}
+.nstatus.done{color:#0ea672}
+.nstatus.prog{color:#e08a1e}
+.map-stats{display:flex;gap:12px;padding:0 18px 20px}
+.mstat{flex:1;background:var(--lcard);border:1px solid var(--lline);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 16px -10px rgba(13,59,58,.25)}
+.mstat b{display:block;font-size:1.1rem;color:var(--lnavy);font-family:"Space Grotesk"}
+.mstat span{color:var(--lsub);font-size:.68rem}
+.map-float{position:absolute;width:38px;height:38px;border-radius:12px;background:var(--lcard);border:1px solid var(--lline);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 10px 18px -8px rgba(13,59,58,.3);z-index:2}
+@media(max-width:900px){.map-float{display:none}}
+
+#appRoot{display:none}
+#appRoot.show{display:block}
+.gov-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,144,255,.12);border:1px solid rgba(0,144,255,.3);color:var(--blue);border-radius:99px;padding:6px 12px;font-size:.72rem;font-weight:700;margin-bottom:10px}
+.hero.admin .gov-badge{background:rgba(200,68,156,.12);border-color:rgba(200,68,156,.32);color:#c8449c}
+.gov-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.gov-actions select{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.8rem;font-family:inherit}
+.gov-actions button{border:none;background:var(--grad);color:#fff;border-radius:10px;padding:8px 14px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-update-soft{background:#5aacf0!important;box-shadow:0 6px 14px -8px rgba(90,172,240,.6)}
+.btn-update-soft:hover{background:#4b9fe6!important}
+.gov-actions button.admin-del-btn{background:rgba(230,60,60,.14);color:#e35c5c;border:1px solid rgba(230,60,60,.4)}
+.gov-actions button.admin-del-btn:hover{background:rgba(230,60,60,.24)}
+
+.app-body{display:flex;align-items:flex-start;gap:0}
+.app-body-main{flex:1;min-width:0}
+.admin-sidebar{flex:0 0 210px;display:flex;flex-direction:column;gap:4px;padding:18px 14px;position:sticky;top:0;
+  border-right:1px solid var(--line)}
+.admin-tab-btn{display:flex;align-items:center;gap:10px;background:transparent;border:none;color:var(--sub);text-align:left;
+  padding:11px 13px;border-radius:12px;font-size:.86rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s ease,color .15s ease}
+.admin-tab-btn span{font-size:1rem}
+.admin-tab-btn:hover{background:var(--card);color:var(--txt)}
+.admin-tab-btn.active{background:rgba(200,68,156,.14);color:#c8449c}
+@media(max-width:760px){
+  .app-body{flex-direction:column}
+  .admin-sidebar{flex-direction:row;flex-wrap:wrap;position:static;width:100%;border-right:none;border-bottom:1px solid var(--line);gap:6px}
+  .admin-tab-btn{padding:9px 12px;font-size:.8rem}
+}
+.admin-badge-tab{background:rgba(200,68,156,.12);border-color:rgba(200,68,156,.32);color:#c8449c}
+.admin-formcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:26px}
+.admin-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:30px}
+.admin-table{width:100%;border-collapse:collapse;font-size:.84rem;white-space:nowrap}
+.admin-table th{text-align:left;color:var(--sub);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.02em;
+  padding:11px 14px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.admin-table td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--txt)}
+.admin-table tr:last-child td{border-bottom:none}
+.admin-table .del-row-btn{background:rgba(230,60,60,.12);color:#e35c5c;border:1px solid rgba(230,60,60,.35);border-radius:9px;
+  padding:5px 10px;font-size:.74rem;font-weight:700;cursor:pointer;font-family:inherit}
+.admin-table .del-row-btn:hover{background:rgba(230,60,60,.22)}
+.admin-table .del-row-btn.assign-btn{background:rgba(0,144,255,.12);color:var(--blue);border-color:rgba(0,144,255,.35);margin-right:6px}
+.admin-table .del-row-btn.assign-btn:hover{background:rgba(0,144,255,.22)}
+.admin-noscope{color:var(--sub);font-size:.78rem;font-style:italic}
+.admin-table .role-pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.72rem;font-weight:700}
+.admin-table .role-pill.citizen{background:rgba(10,214,118,.12);color:var(--green)}
+.admin-table .role-pill.gov{background:rgba(0,144,255,.12);color:var(--blue)}
+.admin-table .role-pill.admin{background:rgba(200,68,156,.12);color:#c8449c}
+.admin-empty{padding:22px 14px;text-align:center;color:var(--sub);font-size:.84rem}
+</style>
+</head>
+<body>
+
+<!-- ANASAYFA / GİRİŞ -->
+<div id="landing">
+  <div class="blob-layer">
+    <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div><div class="blob blob4"></div><div class="blob blob5"></div>
+  </div>
+
+  <nav class="landing-nav">
+    <div class="nav-links">
+      <div class="brand-lockup brand-lockup-nav">
+        <div class="plaque">
+          <span class="brand-wordmark brand-wordmark-nav" style="font-size:1.25rem" role="img" aria-label="Çözüm Hattı"><span class="w1">Çözüm</span> <span class="w2">Hattı</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-role-links">
+        <button class="nav-role-link" onclick="login('citizen')">Vatandaş Girişi</button>
+        <span class="nav-role-sep">·</span>
+        <button class="nav-role-link" onclick="openGovQuickModal()">Belediye Girişi</button>
+      </div>
+      <div class="nav-auth-group">
+        <button class="nav-admin-btn" onclick="quickAdminLogin()" title="Admin paneline hızlı giriş (demo)">Admin</button>
+        <button class="nav-cta" onclick="openLoginModal()">Giriş Yap</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero-split">
+    <div class="hero-left">
+
+      <div class="slogan-ribbon">
+        <span class="slogan-line l1">SEN BİLDİR,</span>
+        <span class="slogan-line l2">ÇÖZÜM GELSİN.</span>
+      </div>
+
+      <p class="landing-desc">Yaşadığın mahalledeki sorunu birkaç dokunuşla ilet, çözüm sürecini canlı takip et.</p>
+
+      <div class="icon-row">
+        <div class="icon-item"><div class="icon-badge icon-badge-text" style="color:#16305c;border-color:#16305c">Bildir</div></div>
+        <div class="icon-item"><div class="icon-badge icon-badge-text" style="color:var(--lteal);border-color:var(--lteal)">Takip<br>Et</div></div>
+        <div class="icon-item"><div class="icon-badge icon-badge-text" style="color:#0ad676;border-color:#0ad676">Çözüme<br>Ulaş</div></div>
+      </div>
+
+      <p class="icon-tagline">Daha Güzel Bir Kent İçin Söz Vatandaşta.</p>
+
+    </div>
+
+    <div class="hero-right">
+      <div class="abs-panel">
+        <div class="abs-illust">
+          <div class="abs-blob abs-blob1"></div>
+          <div class="abs-blob abs-blob2"></div>
+          <svg viewBox="0 0 560 560" class="abs-svg">
+            <defs>
+              <linearGradient id="absNavy" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1e4472"/><stop offset="1" stop-color="#16305c"/>
+              </linearGradient>
+              <linearGradient id="absTeal" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#17d3ff"/><stop offset="1" stop-color="#0090ff"/>
+              </linearGradient>
+              <linearGradient id="absGreen" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7fe8c9"/><stop offset="1" stop-color="#0ad676"/>
+              </linearGradient>
+              <radialGradient id="pinShadow" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#0a3330" stop-opacity=".28"/><stop offset="1" stop-color="#0a3330" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0a3330" flood-opacity=".28"/>
+              </filter>
+            </defs>
+
+            <!-- yörünge halkaları -->
+            <circle cx="280" cy="280" r="215" fill="none" stroke="#16305c" stroke-opacity=".1" stroke-width="1.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+            <circle cx="280" cy="280" r="152" fill="none" stroke="#16305c" stroke-opacity=".08" stroke-width="1.5"/>
+
+            <!-- rota çizgisi: bildir -> takip et -> çözüme ulaş -->
+            <path d="M118 392 C 176 334, 188 232, 268 192 S 418 150, 438 96" fill="none" stroke="#16305c" stroke-opacity=".3" stroke-width="3" stroke-dasharray="1 11" stroke-linecap="round"/>
+
+            <!-- büyük arka plan daireleri -->
+            <circle cx="148" cy="168" r="62" fill="url(#absTeal)" opacity=".14"/>
+            <circle cx="432" cy="412" r="76" fill="url(#absGreen)" opacity=".12"/>
+
+            <!-- merkezi odak dairesi: çözüme ulaşıldı -->
+            <g filter="url(#softShadow)">
+              <circle cx="330" cy="300" r="94" fill="url(#absNavy)"/>
+            </g>
+            <circle cx="330" cy="300" r="94" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="9"/>
+            <path d="M291 300l27 27 52-56" fill="none" stroke="#fff" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- konum pin'i 1: açık sorun -->
+            <ellipse cx="118" cy="416" rx="18" ry="6" fill="url(#pinShadow)"/>
+            <g transform="translate(118,392)">
+              <path d="M0 -34C-16.5 -34 -30 -20.9 -30 -4.7 -30 17.4 0 44 0 44S30 17.4 30 -4.7C30 -20.9 16.5 -34 0 -34Z" fill="#ff6b5e"/>
+              <circle cx="0" cy="-5" r="11" fill="#fff"/>
+            </g>
+            <!-- konum pin'i 2: işlemde -->
+            <ellipse cx="268" cy="214" rx="15" ry="5" fill="url(#pinShadow)"/>
+            <g transform="translate(268,192) scale(.86)">
+              <path d="M0 -34C-16.5 -34 -30 -20.9 -30 -4.7 -30 17.4 0 44 0 44S30 17.4 30 -4.7C30 -20.9 16.5 -34 0 -34Z" fill="#ffb648"/>
+              <circle cx="0" cy="-5" r="11" fill="#fff"/>
+            </g>
+            <!-- konum pin'i 3: çözüldü -->
+            <ellipse cx="438" cy="114" rx="13" ry="4.5" fill="url(#pinShadow)"/>
+            <g transform="translate(438,96) scale(.72)">
+              <path d="M0 -34C-16.5 -34 -30 -20.9 -30 -4.7 -30 17.4 0 44 0 44S30 17.4 30 -4.7C30 -20.9 16.5 -34 0 -34Z" fill="url(#absGreen)"/>
+              <circle cx="0" cy="-5" r="11" fill="#fff"/>
+            </g>
+
+            <!-- küçük dekoratif noktalar -->
+            <circle cx="472" cy="232" r="4.5" fill="#0090ff" opacity=".5"/>
+            <circle cx="92" cy="252" r="4" fill="#0ad676" opacity=".5"/>
+            <circle cx="205" cy="442" r="14" fill="none" stroke="#17d3ff" stroke-opacity=".35" stroke-width="2.3"/>
+          </svg>
+        </div>
+        <div class="abs-caption">
+          <b>Sorun bildirildi, süreç takip edildi.</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lb-section">
+    <div class="lb-panel">
+      <div class="lb-section-head">
+        <span class="lb-eyebrow">Bu ayın en çok çözüm odaklı çalışan belediye sıralaması</span>
+      </div>
+      <div class="lb-podium" id="leaderboardPodium"></div>
+      <div class="lb-modern-strip">
+        <div class="lb-modern-track" id="leaderboardRow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-links">
+    <button onclick="openAboutPage()">Hakkımızda</button>
+    <button onclick="openFaqPage()">SSS</button>
+    <button onclick="openContactPage()">İletişim</button>
+  </div>
+
+  <footer class="landing-footer">© 2026 Çözüm Hattı</footer>
+</div>
+
+<!-- BELEDİYE HIZLI GİRİŞ MODALI -->
+<div class="login-modal-bg" id="govQuickModal">
+  <div class="login-modal">
+    <button class="login-modal-close" onclick="closeModal('govQuickModal')">✕</button>
+    <h2 class="login-modal-title">Belediye Girişi</h2>
+    <p class="login-modal-sub">Hangi belediye hesabıyla giriş yapmak istersiniz?</p>
+    <div class="gov-quick-list" id="govQuickList"></div>
+  </div>
+</div>
+
+<!-- GİRİŞ / ÜYE OL MODALI -->
+<div class="login-modal-bg" id="loginModal">
+  <div class="login-modal">
+    <button class="login-modal-close" onclick="closeModal('loginModal')">✕</button>
+    <h2 class="login-modal-title">Hoş Geldiniz</h2>
+    <p class="login-modal-sub">Çözüm Hattı'na devam etmek için bir yöntem seçin.</p>
+
+    <button class="social-btn social-fb">
+      <svg viewBox="0 0 24 24"><path fill="#fff" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.23 10.44 22v-7.03H7.9v-2.91h2.54V9.84c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22C18.34 21.23 22 17.08 22 12.06Z"/></svg>
+      Facebook ile devam et
+    </button>
+    <button class="social-btn social-google">
+      <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.5-.4-3.5Z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 16.3 3 9.7 7.3 6.3 14.7Z"/><path fill="#4CAF50" d="M24 45c5.4 0 10.3-1.8 14-5.7l-6.5-5.3c-2 1.4-4.6 2.4-7.5 2.4-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.6 40.6 16.2 45 24 45Z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4 5.6l6.5 5.3C41.8 35.9 45 30.5 45 24c0-1.4-.1-2.5-.4-3.5Z"/></svg>
+      Google ile devam et
+    </button>
+
+    <div class="login-modal-divider"><span>veya</span></div>
+
+    <div class="login-modal-field"><label>E-posta</label><input type="email" id="loginEmail" placeholder="ornek@eposta.com"></div>
+    <div class="login-modal-field"><label>Şifre</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+
+    <button class="login-modal-go" onclick="submitLoginModal()">Giriş Yap</button>
+    <p class="login-modal-signup">Hesabın yok mu? <a>Üye Ol</a></p>
+    <div class="login-modal-demo">
+      <b>Demo hesaplar</b>
+      <div><span>👤 Vatandaş</span> vatandas@belediyem.com · vatandas123</div>
+      <div><span>🏛️ Belediye</span> belediye@belediyem.com · belediye123</div>
+      <div><span>🛠️ Admin</span> admin@belediyem.com · admin123</div>
+    </div>
+  </div>
+</div>
+
+<!-- HAKKIMIZDA SAYFASI -->
+<div id="aboutPage" style="display:none">
+  <nav class="subpage-nav">
+    <div class="brand-lockup brand-lockup-nav" onclick="closeSubpage()" style="cursor:pointer">
+      <svg class="brand-badge" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="spBadgeBgAbout" x1="8" y1="8" x2="92" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6fd196"/>
+            <stop offset=".55" stop-color="#2fae66"/>
+            <stop offset="1" stop-color="#2f8fd1"/>
+          </linearGradient>
+        </defs>
+        <rect x="7" y="7" width="86" height="86" rx="23" fill="url(#spBadgeBgAbout)"/>
+        <path d="M50 78S22 60.5 22 41.5C22 30 30.5 23 40 23c4.8 0 8.6 2.1 10 5.4C51.4 25.1 55.2 23 60 23c9.5 0 18 7 18 18.5C78 60.5 50 78 50 78Z" fill="#fbfdfc"/>
+        <path d="M39 44.5 46 51.5 63 34" stroke="#2f8fd1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="plaque"><span class="brand-wordmark" style="font-size:1.4rem" role="img" aria-label="Çözüm Hattı"><span class="w1">Çözüm</span> <span class="w2">Hattı</span></span></div>
+    </div>
+    <button class="subpage-back" onclick="closeSubpage()">← Anasayfa</button>
+  </nav>
+  <div class="about-layout">
+    <aside class="about-sidebar">
+      <a onclick="scrollAboutTo('about-top')">Hakkımızda</a>
+      <a onclick="scrollAboutTo('about-team')">Biz Kimiz</a>
+    </aside>
+    <div class="about-main">
+      <section id="about-top">
+        <h1>Şehrin sorunlarını birlikte çözüyoruz.</h1>
+        <div class="about-columns">
+          <p>Çözüm Hattı, vatandaşlar ile belediye, TEDAŞ, TESKİ gibi ilgili kurumlar arasındaki iletişimi daha hızlı, şeffaf ve kolay hale getirmek için geliştirilmiş dijital bir platformdur.</p>
+          <p>Mahallenizde gördüğünüz bir yol problemi, bozuk kaldırım, arızalı sokak lambası, elektrik kesintisi, su/kanalizasyon arızası veya ilgilenilmesini istediğiniz herhangi bir konuyu birkaç adımda bize iletebilirsiniz — sorunu doğru kuruma biz yönlendiririz.</p>
+          <p>Bildirdiğiniz sorun ilgili bölgeyle birlikte sistemimize kaydedilir ve herkes tarafından görülebilir. Böylece yalnızca bir sorun bildirmekle kalmaz, aynı zamanda sorunun hangi aşamada olduğunu takip edebilir ve çözüldüğünde görebilirsiniz.</p>
+          <h4>Daha güçlü iletişim, daha yaşanabilir şehir</h4>
+          <p>Biz, şehrin gelişmesinin yalnızca tek bir kurumun değil, o şehirde yaşayan herkesin ve hizmet veren tüm kurumların katkısıyla mümkün olduğuna inanıyoruz.</p>
+          <p>Siz gördüğünüz sorunu bildirin, çözüm sürecini birlikte takip edelim.</p>
+          <p>Çünkü daha güzel bir şehir, vatandaşın sesi ile ilgili kurumların çözüm gücünün buluştuğu yerde başlar.</p>
+        </div>
+        <div class="about-motto"><b>Çözüm Hattı</b><span>Gördün. Bildirdin. Çözüldü.</span></div>
+      </section>
+      <section id="about-team">
+        <h2>Biz Kimiz</h2>
+        <p class="team-sub">Çözüm Hattı'nı geliştiren ekip.</p>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="avatar av1"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+            <b>Yusuf Derin</b>
+          </div>
+          <div class="team-card">
+            <div class="avatar av2"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+            <b>Admin 2</b>
+          </div>
+          <div class="team-card">
+            <div class="avatar av3"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+            <b>Admin 3</b>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- SSS SAYFASI -->
+<div id="faqPage" style="display:none">
+  <nav class="subpage-nav">
+    <div class="brand-lockup brand-lockup-nav" onclick="closeSubpage()" style="cursor:pointer">
+      <svg class="brand-badge" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="spBadgeBgFaq" x1="8" y1="8" x2="92" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6fd196"/>
+            <stop offset=".55" stop-color="#2fae66"/>
+            <stop offset="1" stop-color="#2f8fd1"/>
+          </linearGradient>
+        </defs>
+        <rect x="7" y="7" width="86" height="86" rx="23" fill="url(#spBadgeBgFaq)"/>
+        <path d="M50 78S22 60.5 22 41.5C22 30 30.5 23 40 23c4.8 0 8.6 2.1 10 5.4C51.4 25.1 55.2 23 60 23c9.5 0 18 7 18 18.5C78 60.5 50 78 50 78Z" fill="#fbfdfc"/>
+        <path d="M39 44.5 46 51.5 63 34" stroke="#2f8fd1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="plaque"><span class="brand-wordmark" style="font-size:1.4rem" role="img" aria-label="Çözüm Hattı"><span class="w1">Çözüm</span> <span class="w2">Hattı</span></span></div>
+    </div>
+    <button class="subpage-back" onclick="closeSubpage()">← Anasayfa</button>
+  </nav>
+  <div class="subpage-body">
+    <h1>Sık Sorulan Sorular</h1>
+    <div class="faq-list">
+      <details open>
+        <summary>Bilgilerim kimlerle paylaşılıyor?</summary>
+        <p>Bildirdiğiniz sorunlar ilgili belediye ile paylaşılır. Kişisel bilgileriniz üçüncü taraflarla paylaşılmaz.</p>
+      </details>
+      <details>
+        <summary>Bildirdiğim sorun ne kadar sürede işleme alınır?</summary>
+        <p>Süre, sorunun türüne ve belediyenin yoğunluğuna göre değişir. Sürecin her aşamasını uygulama üzerinden canlı takip edebilirsiniz.</p>
+      </details>
+      <details>
+        <summary>Aynı sorunu birden fazla kişi bildirebilir mi?</summary>
+        <p>Evet. Aynı sorun için "Ben de yaşıyorum" butonunu kullanarak destek verebilirsiniz; bu, belediyenin önceliklendirmesine yardımcı olur.</p>
+      </details>
+      <details>
+        <summary>Kayıt olmadan kullanabilir miyim?</summary>
+        <p>Evet, bu bir demo sürümdür ve kayıt olmadan doğrudan giriş yapabilirsiniz.</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- İLETİŞİM SAYFASI -->
+<div id="contactPage" style="display:none">
+  <nav class="subpage-nav">
+    <div class="brand-lockup brand-lockup-nav" onclick="closeSubpage()" style="cursor:pointer">
+      <svg class="brand-badge" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="spBadgeBgContact" x1="8" y1="8" x2="92" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6fd196"/>
+            <stop offset=".55" stop-color="#2fae66"/>
+            <stop offset="1" stop-color="#2f8fd1"/>
+          </linearGradient>
+        </defs>
+        <rect x="7" y="7" width="86" height="86" rx="23" fill="url(#spBadgeBgContact)"/>
+        <path d="M50 78S22 60.5 22 41.5C22 30 30.5 23 40 23c4.8 0 8.6 2.1 10 5.4C51.4 25.1 55.2 23 60 23c9.5 0 18 7 18 18.5C78 60.5 50 78 50 78Z" fill="#fbfdfc"/>
+        <path d="M39 44.5 46 51.5 63 34" stroke="#2f8fd1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="plaque"><span class="brand-wordmark" style="font-size:1.4rem" role="img" aria-label="Çözüm Hattı"><span class="w1">Çözüm</span> <span class="w2">Hattı</span></span></div>
+    </div>
+    <button class="subpage-back" onclick="closeSubpage()">← Anasayfa</button>
+  </nav>
+  <div class="subpage-body">
+    <h1>İletişim</h1>
+    <div class="info-card" style="max-width:480px">
+      <div class="info-ic">✉️</div>
+      <h3>Bize Ulaşın</h3>
+      <ul class="contact-list">
+        <li><span>✉️</span> destek@belediyemyaninda.gov.tr</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- VATANDAŞ GİRİŞ EKRANI -->
+<div id="citizenGate" style="display:none">
+  <div class="cg-wrap">
+    <div class="cg-brand">
+      <div><span class="brand-wordmark" style="font-size:1.4rem" role="img" aria-label="Çözüm Hattı"><span class="w1">Çözüm</span> <span class="w2">Hattı</span></span><span>Vatandaş Girişi</span></div>
+    </div>
+
+    <div class="cg-hero">
+      <h1>Mahallene hoş geldin 👋</h1>
+      <p>Sorunlarını bildirmeye başlamadan önce yaşadığın yeri seç, seni doğru ekibe yönlendirelim.</p>
+    </div>
+
+    <div class="cg-features">
+      <div class="cg-feat"><div class="cg-ic">⚡</div><b>Hızlı Bildirim</b><span>Birkaç dokunuşla sorunu ilet</span></div>
+      <div class="cg-feat"><div class="cg-ic">🚨</div><b>Anında Müdahale</b><span>Ekipler hemen haberdar olsun</span></div>
+      <div class="cg-feat"><div class="cg-ic">📱</div><b>Cebinizdeki Takip Masası</b><span>Süreci her an takip et</span></div>
+    </div>
+
+    <div class="cg-form">
+      <div class="field"><label>İl</label><select id="gIl" onchange="gOnIl()"></select></div>
+      <div class="field"><label>İlçe</label><select id="gIlce" onchange="gOnIlce()"></select></div>
+      <div class="field"><label>Mahalle</label><select id="gMah"></select></div>
+      <button class="cg-go" onclick="enterCitizenApp()">İlerle →</button>
+    </div>
+    <button class="cg-back" onclick="backToLanding()">Çıkış</button>
+  </div>
+</div>
+
+<!-- UYGULAMA -->
+<div id="appRoot">
+<header>
+  <div class="headrow">
+    <div class="brand">
+      <span class="brand-wordmark" style="font-size:1.15rem" role="img" aria-label="Çözüm Hattı"><span class="w1">Çözüm</span> <span class="w2">Hattı</span></span>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="roletag" id="roleTag">Vatandaş</span>
+      <button class="btn-ghost" id="homeBtnTop" onclick="goToLocationGate()">Anasayfa</button>
+      <button class="btn-ghost" id="reportBtnTop" onclick="openReport()">Bildir</button>
+      <button class="btn-logout" onclick="logout()">Çıkış</button>
+    </div>
+  </div>
+  <div class="locbar" id="locbar">
+    <select id="selIl" onchange="onIl()"></select>
+    <select id="selIlce" onchange="onIlce()"></select>
+    <select id="selMah" onchange="renderAll()"></select>
+  </div>
+  <div class="locstatic" id="locStatic" style="display:none">📍 <span id="locStaticText"></span></div>
+</header>
+
+<div class="app-body" id="appBody">
+<nav class="admin-sidebar" id="adminSidebar" style="display:none">
+  <button class="admin-tab-btn active" data-tab="issues" onclick="switchAdminTab('issues')"><span>📋</span> Sorun Yönetimi</button>
+  <button class="admin-tab-btn" data-tab="users" onclick="switchAdminTab('users')"><span>👤</span> Kullanıcı Kaydı</button>
+  <button class="admin-tab-btn" data-tab="govs" onclick="switchAdminTab('govs')"><span>🏛️</span> Belediye Kaydı</button>
+  <button class="admin-tab-btn" data-tab="stats" onclick="switchAdminTab('stats')"><span>📊</span> Giriş İstatistikleri</button>
+</nav>
+<div class="app-body-main">
+<div class="wrap" id="mainWrap">
+  <div class="hero" id="heroCitizen">
+    <h1>Mahallendeki bir sorunu bildir.</h1>
+    <p>Gördüğün sorunu birkaç dokunuşla ilet, sürecini canlı takip et.</p>
+    <div class="cta-row">
+      <button class="btn btn-primary btn-report-cta" onclick="openReport()">Sorun Bildir</button>
+    </div>
+  </div>
+  <div class="hero" id="heroGov" style="display:none">
+    <span class="gov-badge" id="govBadgeText">Belediye Yönetim Paneli</span>
+    <h1 id="heroGovTitle">Bildirilen sorunları yönet.</h1>
+    <p id="heroGovDesc">Durum güncelle, açıklama ekle, vatandaşı bilgilendir.</p>
+    <div class="gov-msg-box" id="govMsgBox" style="display:none">
+      <label for="govMsgInput">Anasayfada Paylaşılacak Mesajınız</label>
+      <textarea id="govMsgInput" maxlength="180" placeholder="Vatandaşlara duyurmak istediğiniz kısa bir mesaj yazın…"></textarea>
+      <div class="gov-msg-actions">
+        <span class="gov-msg-hint">Bu mesaj, anasayfadaki "İlk 3" sıralamasında belediyenizin satırında görünür.</span>
+        <button class="btn btn-primary btn-soft-green" onclick="saveGovMessage()">Paylaş</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="gov-stats" id="govStats" style="display:none">
+    <div class="gov-stats-head"><h2>📊 Genel İstatistikler</h2><span id="govStatsScope">Tüm bölgeler</span></div>
+    <div class="stats" id="govStatsGrid"></div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <section id="map">
+    <div class="sec-title"><h2>Haritada Gör</h2></div>
+    <div class="mapgrid" id="mapgrid"></div>
+  </section>
+
+  <section id="list">
+    <div class="sec-title"><h2 id="listTitle">Sorunlar</h2></div>
+    <p class="meta" id="listNote" style="margin:-8px 0 14px"></p>
+    <div class="filters">
+      <select id="fKategori" onchange="renderAll()"></select>
+      <select id="fDurum" onchange="renderAll()">
+        <option value="">Tüm Durumlar</option>
+        <option value="open">🔴 Açık</option>
+        <option value="progress">🟠 İşlemde</option>
+        <option value="done">🟢 Çözüldü</option>
+      </select>
+    </div>
+    <div class="grid" id="issueGrid"></div>
+  </section>
+</div>
+
+<!-- ADMIN: Kullanıcı Kaydı -->
+<div class="wrap admin-tab-panel" id="adminTab-users" style="display:none">
+  <div class="hero">
+    <span class="gov-badge admin-badge-tab">👤 Kullanıcı Yönetimi</span>
+    <h1>Vatandaş hesabı ekle.</h1>
+    <p>Sisteme manuel olarak yeni bir vatandaş hesabı tanımla. Eklenen hesap, giriş ekranından bu bilgilerle giriş yapabilir.</p>
+  </div>
+  <div class="admin-formcard">
+    <div class="row2">
+      <div class="field"><label>Ad Soyad</label><input id="auName" placeholder="Örn: Ayşe Yılmaz"></div>
+      <div class="field"><label>E-posta</label><input id="auEmail" type="email" placeholder="ornek@eposta.com"></div>
+      <div class="field"><label>Şifre</label><input id="auPassword" type="text" placeholder="••••••••"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>İl</label><select id="auIl" onchange="auOnIl()"></select></div>
+      <div class="field"><label>İlçe</label><select id="auIlce" onchange="auOnIlce()"></select></div>
+      <div class="field"><label>Mahalle</label><select id="auMah"></select></div>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="adminAddUser()">Kullanıcı Ekle</button>
+  </div>
+  <section id="adminUserListSec">
+    <div class="sec-title"><h2>Kayıtlı Vatandaşlar</h2></div>
+    <div class="admin-table-wrap"><table class="admin-table" id="adminUserTable"></table></div>
+  </section>
+</div>
+
+<!-- ADMIN: Belediye Kaydı -->
+<div class="wrap admin-tab-panel" id="adminTab-govs" style="display:none">
+  <div class="hero">
+    <span class="gov-badge admin-badge-tab">🏛️ Belediye Yönetimi</span>
+    <h1>Belediye hesabı ekle.</h1>
+    <p>Sisteme yeni bir belediye/kurum hesabı tanımla ve yetki bölgesini (il + bir veya daha fazla ilçe/mahalle) ata. Bu hesap giriş yaptığında yalnızca atanan ilçe ve mahallelerin bildirimlerini görebilecek.</p>
+  </div>
+  <div class="admin-formcard">
+    <div class="row2">
+      <div class="field"><label>Belediye Adı</label><input id="agName" placeholder="Örn: Çorlu Belediyesi"></div>
+      <div class="field"><label>E-posta</label><input id="agEmail" type="email" placeholder="ornek@belediye.gov.tr"></div>
+      <div class="field"><label>Şifre</label><input id="agPassword" type="text" placeholder="••••••••"></div>
+    </div>
+    <div class="field"><label>Yetki İli</label><select id="agIl" onchange="agOnIl()"></select></div>
+    <div class="field">
+      <label>Yetki İlçeleri <span style="font-weight:400;color:var(--sub)">(birden fazla seçebilirsin)</span></label>
+      <div class="chipwrap" id="agIlceWrap"><span class="admin-noscope">Önce il seçin</span></div>
+    </div>
+    <div class="field">
+      <label>Yetki Mahalleleri <span style="font-weight:400;color:var(--sub)">(opsiyonel — hiçbiri seçilmezse ilçenin tüm mahalleleri dahil olur)</span></label>
+      <div class="chipwrap" id="agMahWrap"><span class="admin-noscope">Önce ilçe seçin</span></div>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="adminAddGov()">Belediye Ekle</button>
+  </div>
+  <section id="adminGovListSec">
+    <div class="sec-title"><h2>Kayıtlı Belediyeler</h2></div>
+    <div class="admin-table-wrap"><table class="admin-table" id="adminGovTable"></table></div>
+  </section>
+</div>
+
+<!-- ADMIN: Giriş İstatistikleri -->
+<div class="wrap admin-tab-panel" id="adminTab-stats" style="display:none">
+  <div class="hero">
+    <span class="gov-badge admin-badge-tab">📊 Giriş İstatistikleri</span>
+    <h1>Siteye giriş aktivitesi.</h1>
+    <p>Vatandaş, belediye ve admin girişlerinin özetini ve son giriş kayıtlarını buradan izle.</p>
+  </div>
+  <div class="stats" id="loginStatsGrid"></div>
+  <section id="loginLogSec">
+    <div class="sec-title"><h2>Son Girişler</h2><button class="btn-ghost" onclick="clearLoginLogs()">Kayıtları Temizle</button></div>
+    <div class="admin-table-wrap"><table class="admin-table" id="loginLogTable"></table></div>
+  </section>
+</div>
+
+</div>
+</div>
+
+<footer>Çözüm Hattı — prototip arayüz demosu</footer>
+</div>
+
+<!-- Report Modal -->
+<div class="modal-bg" id="reportModal">
+  <div class="modal">
+    <button class="close-x" onclick="closeModal('reportModal')">✕</button>
+    <h2>Sorun Bildir</h2>
+    <button type="button" class="cg-locate" id="rLocateBtn" onclick="useMyLocation('r')">📍 Konumumu Kullan</button>
+    <div class="cg-or"><span>veya elle seç</span></div>
+    <div class="row2">
+      <div class="field"><label>İl</label><select id="rIl" onchange="rOnIl()"></select></div>
+      <div class="field"><label>İlçe</label><select id="rIlce" onchange="rOnIlce()"></select></div>
+      <div class="field"><label>Mahalle</label><select id="rMah"></select></div>
+    </div>
+    <div class="field"><label>Kategori</label>
+      <div class="chipwrap" id="catChips"></div>
+    </div>
+    <div class="field"><label>Sorun Başlığı</label><input id="rTitle" placeholder="Örn: Kaldırım kırık"></div>
+    <div class="field"><label>Açıklama</label><textarea id="rDesc" placeholder="Sorunu kısaca anlat..."></textarea></div>
+    <div class="field"><label>Fotoğraf</label><input type="file" id="rPhoto" accept="image/*"></div>
+    <button class="btn btn-primary btn-report-cta" style="width:100%" onclick="submitReport()">Sorunu Bildir</button>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-bg" id="detailModal">
+  <div class="modal" id="detailBody"></div>
+</div>
+
+<!-- Admin: Bölge Ata Modal -->
+<div class="modal-bg" id="assignModal">
+  <div class="modal">
+    <button class="close-x" onclick="closeModal('assignModal')">✕</button>
+    <h2>🗺️ Yetki Bölgesi Ata</h2>
+    <p class="meta" style="margin:-6px 0 14px"><b id="assignGovName"></b> · <span id="assignGovEmail"></span></p>
+    <input type="hidden" id="assignEmailHidden">
+    <div class="field"><label>İl</label><select id="assignIl" onchange="assignOnIl()"></select></div>
+    <div class="field">
+      <label>İlçeler <span style="font-weight:400;color:var(--sub)">(birden fazla seçebilirsin)</span></label>
+      <div class="chipwrap" id="assignIlceWrap"></div>
+    </div>
+    <div class="field">
+      <label>Mahalleler <span style="font-weight:400;color:var(--sub)">(opsiyonel — hiçbiri seçilmezse tüm mahalleler dahil olur)</span></label>
+      <div class="chipwrap" id="assignMahWrap"></div>
+    </div>
+    <div class="gov-note" style="margin-top:2px">Bu belediye, giriş yaptığında sadece atanan ilçe ve mahallelerin bildirimlerini görebilecek.</div>
+    <button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="saveAssignModal()">Kaydet</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LOC = {
+  "Tekirdağ": {"Çorlu": ["Hıdırağa Mahallesi","Zafer Mahallesi","Yenidoğan Mahallesi","Kumbağ Mahallesi"],
+               "Süleymanpaşa": ["Aydoğdu Mahallesi","Barbaros Mahallesi"],
+               "Şarköy": ["Cumhuriyet Mahallesi","Yeniköy Mahallesi"]},
+  "İstanbul": {"Kadıköy": ["Fenerbahçe Mahallesi","Göztepe Mahallesi"], "Beşiktaş": ["Levent Mahallesi","Etiler Mahallesi"]},
+  "Ankara": {"Çankaya": ["Kızılay Mahallesi","Bahçelievler Mahallesi"], "Keçiören": ["Etlik Mahallesi"]}
+};
+const LOC_COORDS = [
+  {il:"Tekirdağ", ilce:"Çorlu", mah:"Hıdırağa Mahallesi", lat:41.1560, lon:27.8010},
+  {il:"Tekirdağ", ilce:"Çorlu", mah:"Zafer Mahallesi", lat:41.1500, lon:27.7950},
+  {il:"Tekirdağ", ilce:"Çorlu", mah:"Yenidoğan Mahallesi", lat:41.1600, lon:27.8100},
+  {il:"Tekirdağ", ilce:"Çorlu", mah:"Kumbağ Mahallesi", lat:40.9500, lon:27.8700},
+  {il:"Tekirdağ", ilce:"Süleymanpaşa", mah:"Aydoğdu Mahallesi", lat:40.9800, lon:27.5100},
+  {il:"Tekirdağ", ilce:"Süleymanpaşa", mah:"Barbaros Mahallesi", lat:40.9900, lon:27.4800},
+  {il:"Tekirdağ", ilce:"Şarköy", mah:"Cumhuriyet Mahallesi", lat:40.6100, lon:27.1100},
+  {il:"Tekirdağ", ilce:"Şarköy", mah:"Yeniköy Mahallesi", lat:40.6300, lon:27.0500},
+  {il:"İstanbul", ilce:"Kadıköy", mah:"Fenerbahçe Mahallesi", lat:40.9700, lon:29.0400},
+  {il:"İstanbul", ilce:"Kadıköy", mah:"Göztepe Mahallesi", lat:40.9750, lon:29.0600},
+  {il:"İstanbul", ilce:"Beşiktaş", mah:"Levent Mahallesi", lat:41.0800, lon:29.0100},
+  {il:"İstanbul", ilce:"Beşiktaş", mah:"Etiler Mahallesi", lat:41.0850, lon:29.0300},
+  {il:"Ankara", ilce:"Çankaya", mah:"Kızılay Mahallesi", lat:39.9200, lon:32.8540},
+  {il:"Ankara", ilce:"Çankaya", mah:"Bahçelievler Mahallesi", lat:39.9300, lon:32.8300},
+  {il:"Ankara", ilce:"Keçiören", mah:"Etlik Mahallesi", lat:39.9800, lon:32.8500}
+];
+const KATEGORILER = ["Yol","Kaldırım","Çöp","Sokak aydınlatması","Su","Kanalizasyon","Park ve yeşil alan","Trafik","Gürültü","Temizlik","Ulaşım","Sosyal alan","Diğer"];
+const CATEGORY_ICONS = {"Yol":"🚧","Kaldırım":"🧱","Çöp":"🗑️","Sokak aydınlatması":"💡","Su":"💧","Kanalizasyon":"🕳️","Park ve yeşil alan":"🌳","Trafik":"🚦","Gürültü":"🔊","Temizlik":"🧹","Ulaşım":"🚌","Sosyal alan":"🏛️","Diğer":"📌"};
+function categoryIcon(cat){ return CATEGORY_ICONS[cat] || "📌"; }
+function truncate(str, n){
+  if(!str) return "";
+  const clean = str.trim();
+  return clean.length > n ? clean.slice(0, n).trim() + "…" : clean;
+}
+function timeAgo(dateStr){
+  const d = new Date(dateStr), now = new Date();
+  const diffDays = Math.round((new Date(now.toDateString()) - new Date(d.toDateString())) / 86400000);
+  if(diffDays <= 0) return "Bugün";
+  if(diffDays === 1) return "Dün";
+  if(diffDays < 7) return diffDays + " gün önce";
+  if(diffDays < 30) return Math.floor(diffDays/7) + " hafta önce";
+  return dateStr;
+}
+const STATUS_LABEL = {open:{t:"Açık",cls:"b-open",icon:"🔴",msg:"Bildirim iletildi."},progress:{t:"İşlemde",cls:"b-progress",icon:"🟠",msg:"Belediye ekipleri sorununuz üzerinde çalışıyor."},done:{t:"Çözüldü",cls:"b-done",icon:"🟢",msg:"Sorun belediye tarafından çözüldü."}};
+
+let issues = [];
+let selCat = KATEGORILER[0];
+let scopeMode = 'mahalle'; // 'mahalle' = sadece seçili mahalle, 'all' = tüm bölgeler
+let role = null; // 'citizen' | 'gov' | 'admin'
+let EXTRA_USERS = [];   // admin tarafından eklenen vatandaş hesapları
+let EXTRA_GOVS = [
+  { name: "Çorlu Belediyesi", email: "corlu@belediyem.com", password: "corlu123", il: "Tekirdağ", ilceler: ["Çorlu"], mahalleler: [], created: "2026-10-02" },
+  { name: "Kadıköy Belediyesi", email: "kadikoy@belediyem.com", password: "kadikoy123", il: "İstanbul", ilceler: ["Kadıköy"], mahalleler: [], created: "2026-10-02" },
+  { name: "Çankaya Belediyesi", email: "cankaya@belediyem.com", password: "cankaya123", il: "Ankara", ilceler: ["Çankaya"], mahalleler: [], created: "2026-10-02" },
+  { name: "Şarköy Belediyesi", email: "sarkoy@belediyem.com", password: "sarkoy123", il: "Tekirdağ", ilceler: ["Şarköy"], mahalleler: [], created: "2026-10-02" }
+];    // admin tarafından eklenen belediye hesapları (demo amaçlı önceden tanımlı)
+let agSelIlceler = new Set();   // "Belediye Ekle" formunda seçili ilçeler
+let agSelMahalleler = new Set(); // "Belediye Ekle" formunda seçili mahalleler
+let assignSelIlceler = new Set();   // "Bölge Ata" modalında seçili ilçeler
+let assignSelMahalleler = new Set(); // "Bölge Ata" modalında seçili mahalleler
+let LOGIN_LOGS = [];    // site giriş kayıtları
+let GOV_MESSAGES = {};  // belediye adı -> anasayfada gösterilecek mesaj
+let adminInited = false;
+let activeAdminTab = 'issues';
+let currentEmail = null;
+let govScopeIl = null;        // giriş yapan belediyeye atanmış il (null = tüm bölgeler)
+let govScopeIlceler = [];     // giriş yapan belediyeye atanmış ilçeler (birden fazla olabilir)
+let govScopeMahalleler = [];  // giriş yapan belediyeye atanmış mahalleler (boş = atanan ilçelerin tüm mahalleleri)
+let govScopeName = null;      // giriş yapan belediyenin adı (ör. "Çorlu Belediyesi")
+
+function setPageTitle(name){ document.title = name + " - Çözüm Hattı"; }
+
+function applyGovScope(email){
+  const g = EXTRA_GOVS.find(x=>x.email===email);
+  if(g && g.il && g.ilceler && g.ilceler.length){
+    govScopeIl = g.il; govScopeIlceler = g.ilceler.slice(); govScopeMahalleler = (g.mahalleler||[]).slice(); govScopeName = g.name;
+  } else {
+    govScopeIl = null; govScopeIlceler = []; govScopeMahalleler = []; govScopeName = null;
+  }
+}
+
+function login(r, email){
+  role = r;
+  currentEmail = email || null;
+  logLogin(r, email);
+  if(r === 'gov') applyGovScope(email);
+  if(r === 'citizen'){
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('citizenGate').style.display = 'block';
+    fillSelect(document.getElementById('gIl'), Object.keys(LOC), "İl seçin");
+    fillSelect(document.getElementById('gIlce'), [], "Önce il seçin");
+    fillSelect(document.getElementById('gMah'), [], "Önce ilçe seçin");
+    setPageTitle("Vatandaş Girişi");
+    return;
+  }
+  enterApp();
+}
+
+function enterApp(){
+  try{ localStorage.setItem('by_role', role); localStorage.setItem('by_email', currentEmail||''); }catch(e){}
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('citizenGate').style.display = 'none';
+  document.getElementById('appRoot').classList.add('show');
+  applyRole();
+  renderAll();
+  setPageTitle(role === 'admin' ? "Admin" : role === 'gov' ? "Belediye" : "Vatandaş");
+}
+
+function backToLanding(){
+  role = null;
+  document.getElementById('citizenGate').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+  setPageTitle("Anasayfa");
+}
+
+function scrollPageToTop(){
+  const prevBehavior = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  document.documentElement.style.scrollBehavior = prevBehavior;
+}
+function openAboutPage(){
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('aboutPage').style.display = 'block';
+  scrollPageToTop();
+  setPageTitle("Hakkımızda");
+}
+function openFaqPage(){
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('faqPage').style.display = 'block';
+  scrollPageToTop();
+  setPageTitle("Sık Sorulan Sorular");
+}
+function openContactPage(){
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('contactPage').style.display = 'block';
+  scrollPageToTop();
+  setPageTitle("İletişim");
+}
+function closeSubpage(){
+  document.getElementById('aboutPage').style.display = 'none';
+  document.getElementById('faqPage').style.display = 'none';
+  document.getElementById('contactPage').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+  scrollPageToTop();
+  setPageTitle("Anasayfa");
+}
+function scrollAboutTo(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function haversine(lat1, lon1, lat2, lon2){
+  const R = 6371;
+  const dLat = (lat2-lat1) * Math.PI/180, dLon = (lon2-lon1) * Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function useMyLocation(prefix){
+  prefix = prefix || 'g';
+  const ids = prefix === 'r' ? {il:'rIl', ilce:'rIlce', mah:'rMah', btn:'rLocateBtn', onIl:rOnIl, onIlce:rOnIlce}
+                              : {il:'gIl', ilce:'gIlce', mah:'gMah', btn:'cgLocateBtn', onIl:gOnIl, onIlce:gOnIlce};
+  if(!navigator.geolocation){
+    alert("Tarayıcınız konum özelliğini desteklemiyor. Lütfen il, ilçe ve mahalleyi elle seçin.");
+    return;
+  }
+  const btn = document.getElementById(ids.btn);
+  btn.disabled = true;
+  btn.textContent = "📍 Konum alınıyor...";
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude, longitude } = pos.coords;
+      let best = null, bestDist = Infinity;
+      LOC_COORDS.forEach(c => {
+        const d = haversine(latitude, longitude, c.lat, c.lon);
+        if(d < bestDist){ bestDist = d; best = c; }
+      });
+      btn.disabled = false;
+      btn.textContent = "📍 Konumumu Kullan";
+      if(best){
+        if(prefix === 'r'){
+          fillSelect(document.getElementById(ids.il), Object.keys(LOC));
+        } else {
+          fillSelect(document.getElementById(ids.il), Object.keys(LOC), "İl seçin");
+        }
+        document.getElementById(ids.il).value = best.il;
+        ids.onIl();
+        document.getElementById(ids.ilce).value = best.ilce;
+        ids.onIlce();
+        document.getElementById(ids.mah).value = best.mah;
+        showToast("Konumun: " + best.mah + ", " + best.ilce);
+      }
+    },
+    err => {
+      btn.disabled = false;
+      btn.textContent = "📍 Konumumu Kullan";
+      alert("Konum alınamadı. Lütfen tarayıcı ayarlarından izin verin ya da il, ilçe ve mahalleyi elle seçin.");
+    },
+    { timeout: 10000 }
+  );
+}
+
+function gOnIl(){
+  const il = document.getElementById('gIl').value;
+  const ilceler = il ? Object.keys(LOC[il]) : [];
+  fillSelect(document.getElementById('gIlce'), ilceler, il ? "İlçe seçin" : "Önce il seçin");
+  fillSelect(document.getElementById('gMah'), [], "Önce ilçe seçin");
+}
+function gOnIlce(){
+  const il = document.getElementById('gIl').value, ilce = document.getElementById('gIlce').value;
+  const mahs = (il && ilce) ? LOC[il][ilce] : [];
+  fillSelect(document.getElementById('gMah'), mahs, ilce ? "Mahalle seçin" : "Önce ilçe seçin");
+}
+function enterCitizenApp(){
+  const il = document.getElementById('gIl').value, ilce = document.getElementById('gIlce').value, mah = document.getElementById('gMah').value;
+  if(!il || !ilce || !mah){ alert("Lütfen il, ilçe ve mahalle seçin."); return; }
+  enterApp();
+  fillSelect(document.getElementById('selIl'), Object.keys(LOC), "Tüm İller");
+  document.getElementById('selIl').value = il;
+  onIl(true);
+  document.getElementById('selIlce').value = ilce;
+  onIlce(true);
+  document.getElementById('selMah').value = mah;
+  renderAll();
+}
+
+function goToLocationGate(){
+  document.getElementById('appRoot').classList.remove('show');
+  document.getElementById('citizenGate').style.display = 'block';
+  setPageTitle("Vatandaş Girişi");
+  const il = document.getElementById('selIl').value, ilce = document.getElementById('selIlce').value, mah = document.getElementById('selMah').value;
+  fillSelect(document.getElementById('gIl'), Object.keys(LOC), "İl seçin");
+  if(il){
+    document.getElementById('gIl').value = il;
+    gOnIl();
+    if(ilce){
+      document.getElementById('gIlce').value = ilce;
+      gOnIlce();
+      if(mah) document.getElementById('gMah').value = mah;
+    }
+  }
+}
+function renderLandingNodes(){
+  const demo = [
+    {ic:"🚧", t:"Yol Bozukluğu", s:"done"},
+    {ic:"🗑️", t:"Çöp Birikintisi", s:"prog"},
+    {ic:"💡", t:"Sönük Lamba", s:"prog"},
+    {ic:"💧", t:"Su Sızıntısı", s:"done"},
+    {ic:"🧱", t:"Kaldırım Hasarı", s:"done"},
+    {ic:"🌳", t:"Park Bakımı", s:"prog"}
+  ];
+  const el = document.getElementById('landingNodes');
+  if(!el) return;
+  el.innerHTML = demo.map(n=>`
+    <div class="node">
+      <div class="nic">${n.ic}</div>
+      <div><b>${n.t}</b><span class="nstatus ${n.s}">${n.s==='done'?'✅ Çözüldü':'🕐 İşlemde'}</span></div>
+    </div>`).join("");
+}
+
+function renderLandingNodes(){
+  const demo = [
+    {ic:"🚧", t:"Yol Bozukluğu", s:"done"},
+    {ic:"🗑️", t:"Çöp Birikintisi", s:"done"},
+    {ic:"💡", t:"Sönük Lamba", s:"prog"},
+    {ic:"💧", t:"Su Sızıntısı", s:"done"},
+    {ic:"🧱", t:"Kaldırım Hasarı", s:"prog"},
+    {ic:"🌳", t:"Park Bakımı", s:"prog"}
+  ];
+  const el = document.getElementById('landingNodes');
+  if(!el) return;
+  el.innerHTML = demo.map(n=>`
+    <div class="node">
+      <div class="nic">${n.ic}</div>
+      <div><b>${n.t}</b><span class="nstatus ${n.s}">${n.s==='done'?'✅ Çözüldü':'🕐 İşlemde'}</span></div>
+    </div>`).join("");
+}
+
+function renderTopRanking(){
+  const demo = [
+    {ad:"Kadıköy Belediyesi", cozum:128},
+    {ad:"Beşiktaş Belediyesi", cozum:94},
+    {ad:"Üsküdar Belediyesi", cozum:81},
+    {ad:"Şişli Belediyesi", cozum:67},
+    {ad:"Maltepe Belediyesi", cozum:52},
+    {ad:"Bakırköy Belediyesi", cozum:41},
+    {ad:"Kartal Belediyesi", cozum:36},
+    {ad:"Ataşehir Belediyesi", cozum:29}
+  ].sort((a,b)=>b.cozum-a.cozum);
+  const monthEl = document.getElementById('leaderboardMonth');
+  if(monthEl) monthEl.textContent = new Date().toLocaleDateString('tr-TR',{month:'long'});
+
+  // İlk 3 — ödül podyumu
+  const podCls = ["first","second","third"];
+  const svgCrown = `<svg viewBox="0 0 64 64" width="100%" height="100%">
+    <defs><linearGradient id="crownGrad" x1="8" y1="52" x2="56" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffe29a"/><stop offset=".55" stop-color="#ffcc4d"/><stop offset="1" stop-color="#e0a422"/>
+    </linearGradient></defs>
+    <path d="M10 46 L7 23 L20 34 L32 14 L44 34 L57 23 L54 46 Z" fill="url(#crownGrad)" stroke="#b4780f" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <rect x="9" y="45" width="46" height="9" rx="2.5" fill="url(#crownGrad)" stroke="#b4780f" stroke-width="2"/>
+    <circle cx="7" cy="23" r="4.2" fill="#fff6df" stroke="#b4780f" stroke-width="2"/>
+    <circle cx="32" cy="14" r="4.2" fill="#fff6df" stroke="#b4780f" stroke-width="2"/>
+    <circle cx="57" cy="23" r="4.2" fill="#fff6df" stroke="#b4780f" stroke-width="2"/>
+    <circle cx="32" cy="49.5" r="2.4" fill="#b4780f"/>
+  </svg>`;
+  const medalSVG = (ribbon1,ribbon2,discA,discB,discC,ring,star)=>`<svg viewBox="0 0 64 64" width="100%" height="100%">
+    <defs><linearGradient id="g${discA.replace('#','')}" x1="10" y1="54" x2="54" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="${discA}"/><stop offset=".55" stop-color="${discB}"/><stop offset="1" stop-color="${discC}"/>
+    </linearGradient></defs>
+    <path d="M24 29 L13 51 L24 47 L31 56 L37 35 Z" fill="${ribbon1}"/>
+    <path d="M40 29 L51 51 L40 47 L33 56 L27 35 Z" fill="${ribbon2}"/>
+    <circle cx="32" cy="27" r="18" fill="url(#g${discA.replace('#','')})" stroke="${ring}" stroke-width="2"/>
+    <circle cx="32" cy="27" r="12.5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/>
+    <path d="M32 20 L34.1 25 39.4 25.6 35.4 29.1 36.6 34.3 32 31.5 27.4 34.3 28.6 29.1 24.6 25.6 29.9 25 Z" fill="${star}" fill-opacity=".92"/>
+  </svg>`;
+  const podMedal = [
+    svgCrown,
+    medalSVG('#b9c3c5','#9aa7a9','#eef2f3','#c7d0ce','#9aa7a9','#8b9699','#fff'),
+    medalSVG('#d9a876','#b5762f','#f3dcbb','#e0a874','#b5762f','#9c5f22','#fff')
+  ];
+  const podRibbon = ["Bu Ayın Yıldızı","2. SIRA","3. SIRA"];
+  const top3 = demo.slice(0,3);
+  const podEl = document.getElementById('leaderboardPodium');
+  if(podEl){
+    const maxCozum = top3[0] ? top3[0].cozum : 1;
+    podEl.innerHTML = top3.map((r,i)=>{
+      const msg = (GOV_MESSAGES[r.ad]||'').trim();
+      const msgSafe = msg.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return `
+      <div class="lb-pod ${podCls[i]}">
+        <span class="lb-pod-rank">${i+1}</span>
+        <div class="lb-pod-info">
+          <div class="lb-pod-nm">${r.ad}</div>
+          ${i===0?`<span class="lb-pod-ribbon">${podRibbon[0]}</span>`:''}
+          <div class="lb-pod-bar"><i style="width:${Math.max(10, Math.round(r.cozum/maxCozum*100))}%"></i></div>
+        </div>
+        <div class="lb-pod-ct">${r.cozum}<span class="lb-pod-lbl">çözülen sorun</span></div>
+        <div class="lb-msg${msg?'':' empty'}"><b>Belediyenin Mesajı</b><span>${msg ? msgSafe : 'Henüz mesaj paylaşılmadı.'}</span></div>
+      </div>`;
+    }).join("");
+  }
+
+  // 4. sıradan itibaren — ince kayan şerit
+  const rest = demo.slice(3);
+  const items = rest.map((r,i)=>`
+    <span class="lb-pill">
+      <span class="lb-rk">${String(i+4).padStart(2,'0')}</span>
+      <span class="lb-nm">${r.ad}</span>
+      <span class="lb-ct"><b>${r.cozum}</b><i>çözülen sorun</i></span>
+    </span>`);
+  const html = items.join("");
+  const el = document.getElementById('leaderboardRow');
+  if(!el) return;
+  el.innerHTML = html + html; // seamless loop
+  startLbMarquee();
+}
+
+let lbMarqueeRAF = null;
+function startLbMarquee(){
+  const track = document.getElementById('leaderboardRow');
+  if(!track) return;
+  if(lbMarqueeRAF) cancelAnimationFrame(lbMarqueeRAF);
+  const speed = 45; // px/saniye
+  let pos = 0, last = null;
+  function step(ts){
+    if(last === null) last = ts;
+    const dt = Math.min((ts - last) / 1000, .1); // sekme/arka plan sıçramalarına karşı sınır
+    last = ts;
+    const half = track.scrollWidth / 2;
+    if(half > 0){
+      pos -= speed * dt;
+      if(pos <= -half) pos += half;
+      track.style.transform = `translate3d(${pos}px,0,0)`;
+    }
+    lbMarqueeRAF = requestAnimationFrame(step);
+  }
+  lbMarqueeRAF = requestAnimationFrame(step);
+}
+
+function quickReport(){
+  login('citizen');
+  setTimeout(openReport, 60);
+}
+function quickAdminLogin(){
+  login('admin', 'admin@belediyem.com');
+}
+function logout(){
+  role = null;
+  currentEmail = null;
+  govScopeIl = null; govScopeIlceler = []; govScopeMahalleler = []; govScopeName = null;
+  try{ localStorage.removeItem('by_role'); localStorage.removeItem('by_email'); }catch(e){}
+  document.getElementById('appRoot').classList.remove('show');
+  document.getElementById('landing').style.display = 'block';
+  setPageTitle("Anasayfa");
+}
+function applyRole(){
+  const isAdmin = role === 'admin';
+  const isGov = role === 'gov' || isAdmin;
+  document.getElementById('roleTag').textContent = isAdmin ? 'Admin' : isGov ? 'Belediye' : 'Vatandaş';
+  document.getElementById('roleTag').classList.toggle('gov', isGov && !isAdmin);
+  document.getElementById('roleTag').classList.toggle('admin', isAdmin);
+  document.getElementById('heroCitizen').style.display = isGov ? 'none' : '';
+  document.getElementById('heroGov').style.display = isGov ? '' : 'none';
+  document.getElementById('heroGov').classList.toggle('admin', isAdmin);
+  const scoped = !isAdmin && role === 'gov' && govScopeIl && govScopeIlceler.length;
+  document.getElementById('govBadgeText').textContent = isAdmin ? 'Sistem Yönetici Paneli' : (scoped ? (govScopeName||'Belediye') : 'Belediye Yönetim Paneli');
+  document.getElementById('heroGovTitle').textContent = isAdmin ? 'Tüm belediyelerin sorunlarını yönet.' : 'Bildirilen sorunları yönet.';
+  document.getElementById('heroGovDesc').textContent = isAdmin ? 'Tüm il ve ilçelerdeki bildirimleri görüntüle, durum güncelle, gerekirse kaldır.'
+    : scoped ? `Sadece ${govScopeIlceler.join(', ')} (${govScopeIl}) bölgesindeki${govScopeMahalleler.length ? ' seçili mahallelerin' : ' tüm mahallelerin'} bildirimlerini görüyorsun.`
+    : 'Durum güncelle, açıklama ekle, vatandaşı bilgilendir.';
+  document.getElementById('govStats').style.display = isGov ? '' : 'none';
+  const govMsgBox = document.getElementById('govMsgBox');
+  if(govMsgBox){
+    govMsgBox.style.display = scoped ? '' : 'none';
+    if(scoped){
+      const ta = document.getElementById('govMsgInput');
+      if(ta) ta.value = GOV_MESSAGES[govScopeName] || '';
+    }
+  }
+  document.getElementById('reportBtnTop').style.display = isGov ? 'none' : '';
+  document.getElementById('homeBtnTop').style.display = isGov ? 'none' : '';
+  document.getElementById('locbar').style.display = 'none';
+  document.getElementById('locStatic').style.display = 'block';
+  if(isGov){
+    scopeMode = 'all';
+    document.getElementById('selIl').value = '';
+    document.getElementById('selIlce').value = '';
+    document.getElementById('selMah').value = '';
+    renderGovStats();
+    document.getElementById('locStaticText').textContent = scoped ? (govScopeIlceler.join(', ') + ', ' + govScopeIl) : 'Tüm Bölgeler';
+  }
+  else { updateLocStatic(); }
+  document.getElementById('adminSidebar').style.display = isAdmin ? 'flex' : 'none';
+  if(isAdmin){
+    initAdminPanel();
+    switchAdminTab('issues');
+  } else {
+    document.getElementById('mainWrap').style.display = '';
+    document.querySelectorAll('.admin-tab-panel').forEach(el=>el.style.display='none');
+  }
+}
+
+function updateLocStatic(){
+  const il = document.getElementById('selIl').value, ilce = document.getElementById('selIlce').value, mah = document.getElementById('selMah').value;
+  document.getElementById('locStaticText').textContent = [mah, ilce, il].filter(Boolean).join(', ') || "Konum seçilmedi";
+}
+
+function govScopedIssues(){
+  if(role === 'gov' && govScopeIl && govScopeIlceler.length){
+    return issues.filter(i=>i.il===govScopeIl && govScopeIlceler.includes(i.ilce) && (!govScopeMahalleler.length || govScopeMahalleler.includes(i.mah)));
+  }
+  return issues;
+}
+function renderGovStats(){
+  const scopeEl = document.getElementById('govStatsScope');
+  if(scopeEl) scopeEl.textContent = (role==='gov' && govScopeIl && govScopeIlceler.length) ? (govScopeIlceler.join(', ') + ', ' + govScopeIl) : 'Tüm bölgeler';
+  const base = govScopedIssues();
+  const total = base.length;
+  const done = base.filter(i=>i.status==='done').length;
+  const now = new Date();
+  const thisMonth = base.filter(i=>{
+    const d = new Date(i.date);
+    return d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth();
+  }).length;
+  const resolved = base.filter(i=>i.status==='done' && i.history &&
+    i.history.find(h=>h.status==='open') && i.history.find(h=>h.status==='done'));
+  let avgDays = '—';
+  if(resolved.length){
+    const totalDays = resolved.reduce((sum,i)=>{
+      const o = new Date(i.history.find(h=>h.status==='open').date);
+      const d = new Date(i.history.find(h=>h.status==='done').date);
+      return sum + Math.max(0, Math.round((d-o)/86400000));
+    },0);
+    avgDays = Math.round(totalDays/resolved.length) + ' gün';
+  }
+  document.getElementById('govStatsGrid').innerHTML = `
+    <div class="stat"><b>${total}</b><span>Toplam Bildirim</span></div>
+    <div class="stat"><b>${thisMonth}</b><span>Bu Ay Gelen</span></div>
+    <div class="stat" style="color:var(--done)"><b style="color:var(--done)">${done}</b><span>Çözülen</span></div>
+    <div class="stat"><b>${avgDays}</b><span>Ort. Çözüm Süresi</span></div>`;
+}
+
+function seed(){
+  issues = [
+    {id:"SY-2026-000124", il:"Tekirdağ", ilce:"Çorlu", mah:"Hıdırağa Mahallesi", cat:"Kaldırım", title:"Mahallemizde kaldırım bozuk", desc:"Kaldırım taşları kırık, yürümek tehlikeli.", status:"progress", date:"2026-09-10", gov:"Ekiplerimiz tarafından inceleme yapılmıştır. Kaldırım onarımı için çalışma programına alınmıştır.", votes:14, history:[{status:"open",date:"2026-09-10"},{status:"progress",date:"2026-09-13"}]},
+    {id:"SY-2026-000131", il:"Tekirdağ", ilce:"Çorlu", mah:"Zafer Mahallesi", cat:"Sokak aydınlatması", title:"Sokak lambası yanmıyor", desc:"3 gündür sokak karanlık.", status:"open", date:"2026-09-18", gov:"", votes:6, history:[{status:"open",date:"2026-09-18"}]},
+    {id:"SY-2026-000098", il:"Tekirdağ", ilce:"Çorlu", mah:"Yenidoğan Mahallesi", cat:"Çöp", title:"Çöp konteyneri taşıyor", desc:"Çöpler toplanmıyor, koku var.", status:"done", date:"2026-08-30", gov:"Çöp toplama ekibi görevlendirildi, sorun giderildi.", votes:21, history:[{status:"open",date:"2026-08-30"},{status:"progress",date:"2026-09-02"},{status:"done",date:"2026-09-05"}]},
+    {id:"SY-2026-000140", il:"İstanbul", ilce:"Kadıköy", mah:"Göztepe Mahallesi", cat:"Park ve yeşil alan", title:"Park bankları kırık", desc:"Çocuk parkındaki banklar kullanılamaz durumda.", status:"open", date:"2026-09-20", gov:"", votes:3, history:[{status:"open",date:"2026-09-20"}]},
+    {id:"SY-2026-000152", il:"Tekirdağ", ilce:"Şarköy", mah:"Cumhuriyet Mahallesi", cat:"Yol", title:"Sahil yolunda çökme var", desc:"Yağmur sonrası yol kenarında çökme oluştu, araçlar zor geçiyor.", status:"open", date:"2026-09-22", gov:"", votes:9, history:[{status:"open",date:"2026-09-22"}]},
+    {id:"SY-2026-000109", il:"Tekirdağ", ilce:"Şarköy", mah:"Cumhuriyet Mahallesi", cat:"Sokak aydınlatması", title:"Meydan aydınlatması yetersiz", desc:"Cumhuriyet Meydanı akşamları çok karanlık kalıyor.", status:"progress", date:"2026-09-05", gov:"Elektrik ekiplerimiz aydınlatma direği sayısını artırmak için sahaya çıktı.", votes:11, history:[{status:"open",date:"2026-09-05"},{status:"progress",date:"2026-09-08"}]}
+  ];
+}
+
+function fillSelect(sel, arr, placeholder){
+  sel.innerHTML = (placeholder?`<option value="">${placeholder}</option>`:"") + arr.map(a=>`<option value="${a}">${a}</option>`).join("");
+}
+
+function initLocSelectors(){
+  fillSelect(document.getElementById('selIl'), Object.keys(LOC), "Tüm İller");
+  fillSelect(document.getElementById('selIlce'), [], "Tüm İlçeler");
+  fillSelect(document.getElementById('selMah'), [], "Tüm Mahalleler");
+  document.getElementById('selIl').value="Tekirdağ";
+  onIl(true);
+  document.getElementById('selIlce').value="Şarköy";
+  onIlce(true);
+  document.getElementById('selMah').value="Cumhuriyet Mahallesi";
+
+  fillSelect(document.getElementById('rIl'), Object.keys(LOC));
+  rOnIl();
+  fillSelect(document.getElementById('fKategori'), KATEGORILER, "Tüm Kategoriler");
+  document.getElementById('catChips').innerHTML = KATEGORILER.map(k=>`<div class="chip cat-chip ${k===selCat?'sel':''}" data-cat="${k}" onclick="pickCat('${k}')"><span class="cat-label">${k}</span><span class="cat-check">✓</span></div>`).join("");
+}
+function pickCat(k){ selCat=k; document.querySelectorAll('#catChips .chip').forEach(c=>c.classList.toggle('sel', c.dataset.cat===k)); }
+
+function onIl(skipMah){
+  const il = document.getElementById('selIl').value;
+  const ilceler = il ? Object.keys(LOC[il]) : [];
+  fillSelect(document.getElementById('selIlce'), ilceler, "Tüm İlçeler");
+  if(!skipMah){ fillSelect(document.getElementById('selMah'), [], "Tüm Mahalleler"); renderAll(); }
+}
+function onIlce(skip){
+  const il = document.getElementById('selIl').value, ilce = document.getElementById('selIlce').value;
+  const mahs = (il && ilce) ? LOC[il][ilce] : [];
+  fillSelect(document.getElementById('selMah'), mahs, "Tüm Mahalleler");
+  if(!skip) renderAll();
+}
+function rOnIl(){
+  const il = document.getElementById('rIl').value;
+  fillSelect(document.getElementById('rIlce'), Object.keys(LOC[il]));
+  rOnIlce();
+}
+function rOnIlce(){
+  const il = document.getElementById('rIl').value, ilce = document.getElementById('rIlce').value;
+  fillSelect(document.getElementById('rMah'), LOC[il][ilce]);
+  document.querySelectorAll('#rMah option').forEach(o => { o.textContent = shortenMahLabel(o.value); });
+}
+function shortenMahLabel(name){ return name.replace(/\s*Mahallesi$/i, ' Mah.'); }
+
+const STATUS_ORDER = {open:0, progress:1, done:2};
+function issueTime(i){
+  if(i.ts) return i.ts;
+  const t = new Date(i.date + 'T12:00:00').getTime();
+  return isNaN(t) ? 0 : t;
+}
+function sortIssues(list){
+  return list.slice().sort((a,b)=>{
+    const so = STATUS_ORDER[a.status] - STATUS_ORDER[b.status];
+    if(so !== 0) return so;
+    return issueTime(b) - issueTime(a); // aynı durumda: yeni bildirim en üstte
+  });
+}
+function filtered(){
+  let il = document.getElementById('selIl').value, ilce = document.getElementById('selIlce').value, mah = document.getElementById('selMah').value;
+  const cat = document.getElementById('fKategori').value, dur = document.getElementById('fDurum').value;
+  if(scopeMode === 'mahalle' && !mah && role !== 'gov') return []; // mahalle seçilmeden "mahallem" modunda hiçbir şey gösterme
+  if(role === 'gov' && govScopeIl && govScopeIlceler.length){
+    const list = issues.filter(i=>
+      i.il===govScopeIl && govScopeIlceler.includes(i.ilce) &&
+      (!govScopeMahalleler.length || govScopeMahalleler.includes(i.mah)) &&
+      (!cat||i.cat===cat) && (!dur||i.status===dur)
+    );
+    return sortIssues(list);
+  }
+  const list = issues.filter(i=>
+    (!il||i.il===il) && (!ilce||i.ilce===ilce) && (!mah||i.mah===mah) &&
+    (!cat||i.cat===cat) && (!dur||i.status===dur)
+  );
+  return sortIssues(list);
+}
+
+function renderAll(){
+  const mahSel = document.getElementById('selMah').value;
+  if(role === 'citizen') updateLocStatic();
+  const titleEl = document.getElementById('listTitle'), noteEl = document.getElementById('listNote');
+  const govScoped = role === 'gov' && govScopeIl && govScopeIlceler.length;
+  if(scopeMode === 'mahalle'){
+    titleEl.textContent = mahSel ? mahSel + " Sorunları" : "Mahalleni Seç";
+    noteEl.textContent = mahSel ? "" : "Sorunları görmek için üstteki menüden mahalleni seç.";
+  } else if(govScoped){
+    titleEl.textContent = govScopeIlceler.join(', ') + " Sorunları";
+    noteEl.textContent = govScopeIlceler.join(', ') + " (" + govScopeIl + ") " + (govScopeIlceler.length>1?'ilçelerindeki':'ilçesindeki') + (govScopeMahalleler.length ? ' seçili mahallelerin' : ' tüm mahallelerin') + " sorunları gösteriliyor.";
+  } else {
+    titleEl.textContent = "Tüm Sorunlar";
+    noteEl.textContent = "Tüm mahallelerdeki sorunlar gösteriliyor.";
+  }
+  const list = filtered();
+  const total = list.length, open = list.filter(i=>i.status==='open').length, prog = list.filter(i=>i.status==='progress').length, done = list.filter(i=>i.status==='done').length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><b>${total}</b><span>Toplam</span></div>
+    <div class="stat"><b style="color:var(--open)">${open}</b><span>Açık</span></div>
+    <div class="stat"><b style="color:var(--progress)">${prog}</b><span>İşlemde</span></div>
+    <div class="stat"><b style="color:var(--done)">${done}</b><span>Çözülen</span></div>`;
+
+  document.getElementById('issueGrid').innerHTML = list.length ? list.map(i=>{
+    const s = STATUS_LABEL[i.status];
+    return `<div class="card" onclick="openDetail('${i.id}')">
+      <div class="card-top">
+        <span class="cat-tag">${categoryIcon(i.cat)} ${i.cat}</span>
+        <span class="badge ${s.cls}">${s.icon} ${s.t}</span>
+      </div>
+      <h3>${i.title}</h3>
+      <p class="card-desc">${truncate(i.desc, 90)}</p>
+      <div class="meta"><b>${i.mah}</b> · ${i.ilce}, ${i.il}</div>
+      <div class="card-bottom-row">
+        <span class="card-time">🕐 ${timeAgo(i.date)}</span>
+        ${i.photo ? `<span class="card-mini-tag">📷 Fotoğraflı</span>` : ""}
+      </div>
+    </div>`;
+  }).join("") : `<div class="empty">${scopeMode==='mahalle' && !mahSel ? 'Sorunları görmek için önce mahalleni seç ↑' : 'Bu filtrelerde sorun bulunamadı.'}</div>`;
+
+  document.getElementById('mapgrid').innerHTML = list.map(i=>{
+    const color = i.status==='open'?'var(--open)':i.status==='progress'?'var(--progress)':'var(--done)';
+    const catShort = i.cat.length > 12 ? i.cat.slice(0,11)+'…' : i.cat;
+    return `<div class="pin" onclick="openDetail('${i.id}')"><div class="dot" style="background:${color}"></div><small>${catShort}</small></div>`;
+  }).join("") || `<div class="empty">Haritada gösterilecek sorun yok.</div>`;
+}
+
+function ensureHistoryThrough(i, newStatus, dateStr){
+  const order = ['open','progress','done'];
+  const targetIdx = order.indexOf(newStatus);
+  if(!i.history) i.history = [];
+  for(let idx=0; idx<=targetIdx; idx++){
+    const st = order[idx];
+    if(!i.history.find(h=>h.status===st)){
+      i.history.push({status:st, date:dateStr});
+    }
+  }
+}
+function renderTimeline(i){
+  const order = ['open','progress','done'];
+  const labels = {open:'Bildirildi', progress:'İşleme Alındı', done:'Çözüldü'};
+  const hist = (i.history && i.history.length) ? i.history : [{status:'open', date:i.date}];
+  const curIdx = order.indexOf(i.status);
+  return `<div class="timeline">` + order.map((key,idx)=>{
+    const entry = hist.find(h=>h.status===key);
+    const reached = idx <= curIdx;
+    return `<div class="tl-step ${reached?'reached':''}">
+      <div class="tl-dot ${reached?'tl-'+key:''}"></div>
+      <div class="tl-txt"><b>${labels[key]}</b><span>${entry ? entry.date : 'Henüz gerçekleşmedi'}</span></div>
+    </div>`;
+  }).join('') + `</div>`;
+}
+
+function openDetail(id){
+  const i = issues.find(x=>x.id===id);
+  const s = STATUS_LABEL[i.status];
+  const govControls = (role === 'gov' || role === 'admin') ? `
+    <div class="gov-actions">
+      <select id="govStatusSel">
+        <option value="open" ${i.status==='open'?'selected':''}>🔴 Açık</option>
+        <option value="progress" ${i.status==='progress'?'selected':''}>🟠 İşlemde</option>
+        <option value="done" ${i.status==='done'?'selected':''}>🟢 Çözüldü</option>
+      </select>
+      <button class="btn-update-soft" onclick="govUpdate('${i.id}')">Güncelle</button>
+      ${role === 'admin' ? `<button class="admin-del-btn" onclick="adminDeleteIssue('${i.id}')">🗑️ Sorunu Sil</button>` : ""}
+    </div>
+    <div class="field" style="margin-top:10px"><label>Belediye Açıklaması</label><textarea id="govNote" placeholder="Vatandaşa iletilecek açıklama...">${i.gov||""}</textarea></div>
+    <div class="field" style="margin-top:10px"><label>Çözüm Kanıtı Fotoğrafı (opsiyonel)</label><input type="file" id="govPhoto" accept="image/*"></div>
+  ` : "";
+  const photoHtml = i.photo ? `<img class="detail-photo-img" src="${i.photo}" alt="Sorun fotoğrafı">` : `<div class="detail-photo">📷 Fotoğraf eklenmedi</div>`;
+  const proofHtml = i.proof ? `<div class="proof-box"><b>✅ Çözüm Kanıtı</b><img src="${i.proof}" alt="Çözüm kanıtı fotoğrafı"></div>` : "";
+  document.getElementById('detailBody').innerHTML = `
+    <button class="close-x" onclick="closeModal('detailModal')">✕</button>
+    <span class="badge ${s.cls} detail-badge">${s.icon} ${s.t}</span>
+    <h2 style="margin:6px 0">${i.title}</h2>
+    <div class="meta"><b>${i.mah}</b> · ${i.ilce}, ${i.il} · ${i.cat} · ${i.date}</div>
+    ${photoHtml}
+    <div class="detail-desc-box">
+      <p class="detail-desc-label">Açıklama</p>
+      <p class="detail-desc-text">${i.desc}</p>
+    </div>
+    ${renderTimeline(i)}
+    <div class="gov-note"><b>${s.msg}</b>${i.gov?`<br><br>Belediye Açıklaması: ${i.gov}`:""}</div>
+    ${proofHtml}
+    ${govControls}
+  `;
+  document.getElementById('detailModal').classList.add('show');
+}
+
+function govUpdate(id){
+  const i = issues.find(x=>x.id===id);
+  const newStatus = document.getElementById('govStatusSel').value;
+  const newNote = document.getElementById('govNote').value.trim();
+  const photoInput = document.getElementById('govPhoto');
+  const file = photoInput && photoInput.files && photoInput.files[0];
+
+  const finishUpdate = () => {
+    i.status = newStatus;
+    i.gov = newNote;
+    if(!i.history || !i.history.length) i.history = [{status:"open", date:i.date}];
+    ensureHistoryThrough(i, newStatus, new Date().toISOString().slice(0,10));
+    save();
+    renderAll();
+    if(role==='gov' || role==='admin') renderGovStats();
+    closeModal('detailModal');
+    showToast("#" + id + " güncellendi");
+  };
+
+  if(file){
+    const reader = new FileReader();
+    reader.onload = e => { i.proof = e.target.result; finishUpdate(); };
+    reader.readAsDataURL(file);
+  } else {
+    finishUpdate();
+  }
+}
+
+function adminDeleteIssue(id){
+  if(!confirm("#" + id + " numaralı sorunu kalıcı olarak silmek istediğine emin misin?")) return;
+  issues = issues.filter(x=>x.id!==id);
+  save();
+  renderAll();
+  renderGovStats();
+  closeModal('detailModal');
+  showToast("#" + id + " silindi");
+}
+
+function openReport(){ document.getElementById('reportModal').classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+function openLoginModal(){ document.getElementById('loginModal').classList.add('show'); }
+
+function openGovQuickModal(){
+  const list = document.getElementById('govQuickList');
+  const items = [{ name: "Genel Belediye Paneli", email: "belediye@belediyem.com", scope: "Tüm bölgeler" }]
+    .concat(EXTRA_GOVS.map(g => ({ name: g.name, email: g.email, scope: (g.il && g.ilceler && g.ilceler.length) ? (g.ilceler.join(', ') + ', ' + g.il) : 'Tüm bölgeler' })));
+  list.innerHTML = items.map(it => `
+    <button class="gov-quick-item" onclick="govQuickLogin('${it.email}')">
+      <span class="gq-txt"><b>${it.name}</b><span>${it.scope}</span></span>
+      <span class="gq-go">→</span>
+    </button>`).join('');
+  document.getElementById('govQuickModal').classList.add('show');
+}
+function govQuickLogin(email){
+  closeModal('govQuickModal');
+  login('gov', email);
+}
+
+const DEMO_ACCOUNTS = {
+  'vatandas@belediyem.com': { password: 'vatandas123', role: 'citizen' },
+  'belediye@belediyem.com': { password: 'belediye123', role: 'gov' },
+  'admin@belediyem.com': { password: 'admin123', role: 'admin' }
+};
+
+/* ================= ADMIN PANEL ================= */
+
+function switchAdminTab(tab){
+  activeAdminTab = tab;
+  document.querySelectorAll('.admin-tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  document.getElementById('mainWrap').style.display = tab === 'issues' ? '' : 'none';
+  document.getElementById('adminTab-users').style.display = tab === 'users' ? '' : 'none';
+  document.getElementById('adminTab-govs').style.display = tab === 'govs' ? '' : 'none';
+  document.getElementById('adminTab-stats').style.display = tab === 'stats' ? '' : 'none';
+  if(tab === 'issues'){ renderAll(); renderGovStats(); }
+  if(tab === 'users') renderAdminUsers();
+  if(tab === 'govs') renderAdminGovs();
+  if(tab === 'stats') renderLoginStats();
+  scrollPageToTop();
+}
+
+function initAdminPanel(){
+  if(adminInited) return;
+  adminInited = true;
+  fillSelect(document.getElementById('auIl'), Object.keys(LOC), "İl seçin");
+  fillSelect(document.getElementById('auIlce'), [], "Önce il seçin");
+  fillSelect(document.getElementById('auMah'), [], "Önce ilçe seçin");
+  fillSelect(document.getElementById('agIl'), Object.keys(LOC), "İl seçin");
+  renderAgIlceChips(); renderAgMahChips();
+}
+function auOnIl(){
+  const il = document.getElementById('auIl').value;
+  fillSelect(document.getElementById('auIlce'), il ? Object.keys(LOC[il]) : [], il ? "İlçe seçin" : "Önce il seçin");
+  fillSelect(document.getElementById('auMah'), [], "Önce ilçe seçin");
+}
+function auOnIlce(){
+  const il = document.getElementById('auIl').value, ilce = document.getElementById('auIlce').value;
+  fillSelect(document.getElementById('auMah'), (il&&ilce) ? LOC[il][ilce] : [], ilce ? "Mahalle seçin" : "Önce ilçe seçin");
+}
+function agOnIl(){
+  agSelIlceler = new Set(); agSelMahalleler = new Set();
+  renderAgIlceChips(); renderAgMahChips();
+}
+function renderAgIlceChips(){
+  const il = document.getElementById('agIl').value;
+  const wrap = document.getElementById('agIlceWrap');
+  const ilceler = il ? Object.keys(LOC[il]) : [];
+  wrap.innerHTML = ilceler.length ? ilceler.map(ic=>
+    `<button type="button" class="chip ${agSelIlceler.has(ic)?'sel':''}" onclick="toggleAgIlce('${ic}')">${ic}</button>`
+  ).join('') : `<span class="admin-noscope">Önce il seçin</span>`;
+}
+function toggleAgIlce(ic){
+  const il = document.getElementById('agIl').value;
+  if(agSelIlceler.has(ic)){
+    agSelIlceler.delete(ic);
+    (LOC[il][ic]||[]).forEach(m=>agSelMahalleler.delete(m));
+  } else {
+    agSelIlceler.add(ic);
+  }
+  renderAgIlceChips(); renderAgMahChips();
+}
+function renderAgMahChips(){
+  const il = document.getElementById('agIl').value;
+  const wrap = document.getElementById('agMahWrap');
+  if(!il || !agSelIlceler.size){ wrap.innerHTML = `<span class="admin-noscope">Önce ilçe seçin</span>`; return; }
+  let mahs = [];
+  agSelIlceler.forEach(ic => { mahs = mahs.concat(LOC[il][ic]||[]); });
+  wrap.innerHTML = mahs.map(m=>
+    `<button type="button" class="chip ${agSelMahalleler.has(m)?'sel':''}" onclick="toggleAgMah('${m}')">${m}</button>`
+  ).join('');
+}
+function toggleAgMah(m){
+  if(agSelMahalleler.has(m)) agSelMahalleler.delete(m); else agSelMahalleler.add(m);
+  renderAgMahChips();
+}
+
+function adminAddUser(){
+  const name = document.getElementById('auName').value.trim();
+  const email = document.getElementById('auEmail').value.trim().toLowerCase();
+  const password = document.getElementById('auPassword').value.trim();
+  const il = document.getElementById('auIl').value, ilce = document.getElementById('auIlce').value, mah = document.getElementById('auMah').value;
+  if(!name || !email || !password){ showToast("Ad, e-posta ve şifre zorunlu."); return; }
+  if(DEMO_ACCOUNTS[email] || EXTRA_USERS.some(u=>u.email===email) || EXTRA_GOVS.some(g=>g.email===email)){
+    showToast("Bu e-posta zaten kayıtlı."); return;
+  }
+  EXTRA_USERS.push({ name, email, password, il, ilce, mah, created: new Date().toISOString().slice(0,10) });
+  saveAdminData();
+  document.getElementById('auName').value=''; document.getElementById('auEmail').value=''; document.getElementById('auPassword').value='';
+  renderAdminUsers();
+  showToast("Vatandaş hesabı eklendi: " + email);
+}
+function adminDeleteUser(email){
+  EXTRA_USERS = EXTRA_USERS.filter(u=>u.email!==email);
+  saveAdminData();
+  renderAdminUsers();
+}
+function renderAdminUsers(){
+  const tbl = document.getElementById('adminUserTable');
+  if(!EXTRA_USERS.length){
+    tbl.innerHTML = `<tr><td class="admin-empty">Henüz manuel eklenen vatandaş hesabı yok.</td></tr>`;
+    return;
+  }
+  tbl.innerHTML = `<tr><th>Ad Soyad</th><th>E-posta</th><th>Konum</th><th>Kayıt Tarihi</th><th></th></tr>` +
+    EXTRA_USERS.map(u=>`<tr>
+      <td>${u.name}</td><td>${u.email}</td>
+      <td>${[u.mah,u.ilce,u.il].filter(Boolean).join(', ')||'—'}</td>
+      <td>${u.created}</td>
+      <td><button class="del-row-btn" onclick="adminDeleteUser('${u.email}')">Sil</button></td>
+    </tr>`).join('');
+}
+
+function adminAddGov(){
+  const name = document.getElementById('agName').value.trim();
+  const email = document.getElementById('agEmail').value.trim().toLowerCase();
+  const password = document.getElementById('agPassword').value.trim();
+  const il = document.getElementById('agIl').value;
+  const ilceler = Array.from(agSelIlceler);
+  const mahalleler = Array.from(agSelMahalleler);
+  if(!name || !email || !password){ showToast("Belediye adı, e-posta ve şifre zorunlu."); return; }
+  if(!il || !ilceler.length){ showToast("Yetki bölgesi için il ve en az bir ilçe seç."); return; }
+  if(DEMO_ACCOUNTS[email] || EXTRA_USERS.some(u=>u.email===email) || EXTRA_GOVS.some(g=>g.email===email)){
+    showToast("Bu e-posta zaten kayıtlı."); return;
+  }
+  EXTRA_GOVS.push({ name, email, password, il, ilceler, mahalleler, created: new Date().toISOString().slice(0,10) });
+  saveAdminData();
+  document.getElementById('agName').value=''; document.getElementById('agEmail').value=''; document.getElementById('agPassword').value='';
+  document.getElementById('agIl').value='';
+  agSelIlceler = new Set(); agSelMahalleler = new Set();
+  renderAgIlceChips(); renderAgMahChips();
+  renderAdminGovs();
+  showToast("Belediye hesabı eklendi: " + email + " → " + ilceler.join(', ') + ", " + il);
+}
+function adminDeleteGov(email){
+  EXTRA_GOVS = EXTRA_GOVS.filter(g=>g.email!==email);
+  saveAdminData();
+  renderAdminGovs();
+}
+function renderAdminGovs(){
+  const tbl = document.getElementById('adminGovTable');
+  if(!EXTRA_GOVS.length){
+    tbl.innerHTML = `<tr><td class="admin-empty">Henüz manuel eklenen belediye hesabı yok.</td></tr>`;
+    return;
+  }
+  tbl.innerHTML = `<tr><th>Belediye</th><th>E-posta</th><th>Yetki Bölgesi</th><th>Kayıt Tarihi</th><th></th></tr>` +
+    EXTRA_GOVS.map(g=>`<tr>
+      <td>${g.name}</td><td>${g.email}</td>
+      <td>${(g.il && g.ilceler && g.ilceler.length) ? `<span class="role-pill gov">${g.ilceler.join(', ')}, ${g.il}</span>${g.mahalleler&&g.mahalleler.length?` <span class="role-pill gov" style="margin-left:4px">${g.mahalleler.length} mahalle</span>`:''}` : '<span class="admin-noscope">Atanmadı</span>'}</td>
+      <td>${g.created}</td>
+      <td style="white-space:nowrap">
+        <button class="del-row-btn assign-btn" onclick="openAssignModal('${g.email}')">🗺️ Bölge Ata</button>
+        <button class="del-row-btn" onclick="adminDeleteGov('${g.email}')">Sil</button>
+      </td>
+    </tr>`).join('');
+}
+
+function openAssignModal(email){
+  const g = EXTRA_GOVS.find(x=>x.email===email);
+  if(!g) return;
+  document.getElementById('assignGovName').textContent = g.name;
+  document.getElementById('assignGovEmail').textContent = g.email;
+  document.getElementById('assignEmailHidden').value = email;
+  fillSelect(document.getElementById('assignIl'), Object.keys(LOC), "İl seçin");
+  assignSelIlceler = new Set(g.ilceler || []);
+  assignSelMahalleler = new Set(g.mahalleler || []);
+  if(g.il){
+    document.getElementById('assignIl').value = g.il;
+  }
+  renderAssignIlceChips();
+  renderAssignMahChips();
+  document.getElementById('assignModal').classList.add('show');
+}
+function assignOnIl(){
+  assignSelIlceler = new Set(); assignSelMahalleler = new Set();
+  renderAssignIlceChips(); renderAssignMahChips();
+}
+function renderAssignIlceChips(){
+  const il = document.getElementById('assignIl').value;
+  const wrap = document.getElementById('assignIlceWrap');
+  const ilceler = il ? Object.keys(LOC[il]) : [];
+  wrap.innerHTML = ilceler.length ? ilceler.map(ic=>
+    `<button type="button" class="chip ${assignSelIlceler.has(ic)?'sel':''}" onclick="toggleAssignIlce('${ic}')">${ic}</button>`
+  ).join('') : `<span class="admin-noscope">Önce il seçin</span>`;
+}
+function toggleAssignIlce(ic){
+  const il = document.getElementById('assignIl').value;
+  if(assignSelIlceler.has(ic)){
+    assignSelIlceler.delete(ic);
+    (LOC[il][ic]||[]).forEach(m=>assignSelMahalleler.delete(m));
+  } else {
+    assignSelIlceler.add(ic);
+  }
+  renderAssignIlceChips(); renderAssignMahChips();
+}
+function renderAssignMahChips(){
+  const il = document.getElementById('assignIl').value;
+  const wrap = document.getElementById('assignMahWrap');
+  if(!il || !assignSelIlceler.size){ wrap.innerHTML = `<span class="admin-noscope">Önce ilçe seçin</span>`; return; }
+  let mahs = [];
+  assignSelIlceler.forEach(ic => { mahs = mahs.concat(LOC[il][ic]||[]); });
+  wrap.innerHTML = mahs.map(m=>
+    `<button type="button" class="chip ${assignSelMahalleler.has(m)?'sel':''}" onclick="toggleAssignMah('${m}')">${m}</button>`
+  ).join('');
+}
+function toggleAssignMah(m){
+  if(assignSelMahalleler.has(m)) assignSelMahalleler.delete(m); else assignSelMahalleler.add(m);
+  renderAssignMahChips();
+}
+function saveAssignModal(){
+  const email = document.getElementById('assignEmailHidden').value;
+  const il = document.getElementById('assignIl').value;
+  const ilceler = Array.from(assignSelIlceler);
+  const mahalleler = Array.from(assignSelMahalleler);
+  if(!il || !ilceler.length){ showToast("Lütfen il ve en az bir ilçe seç."); return; }
+  const g = EXTRA_GOVS.find(x=>x.email===email);
+  if(!g) return;
+  g.il = il; g.ilceler = ilceler; g.mahalleler = mahalleler;
+  saveAdminData();
+  if(role==='gov' && currentEmail===email){ applyGovScope(email); applyRole(); renderAll(); }
+  renderAdminGovs();
+  closeModal('assignModal');
+  showToast(g.name + " için yetki bölgesi: " + ilceler.join(', ') + ", " + il);
+}
+
+function logLogin(role, email){
+  LOGIN_LOGS.unshift({ role, email: email || '(hızlı giriş)', time: new Date().toLocaleString('tr-TR') });
+  if(LOGIN_LOGS.length > 300) LOGIN_LOGS.length = 300;
+  try{ localStorage.setItem('by_loginlogs', JSON.stringify(LOGIN_LOGS)); }catch(e){}
+}
+function clearLoginLogs(){
+  if(!confirm("Tüm giriş kayıtlarını temizlemek istediğine emin misin?")) return;
+  LOGIN_LOGS = [];
+  try{ localStorage.setItem('by_loginlogs', JSON.stringify(LOGIN_LOGS)); }catch(e){}
+  renderLoginStats();
+}
+const ROLE_LABEL = {citizen:'Vatandaş', gov:'Belediye', admin:'Admin'};
+function renderLoginStats(){
+  const total = LOGIN_LOGS.length;
+  const cCitizen = LOGIN_LOGS.filter(l=>l.role==='citizen').length;
+  const cGov = LOGIN_LOGS.filter(l=>l.role==='gov').length;
+  const cAdmin = LOGIN_LOGS.filter(l=>l.role==='admin').length;
+  document.getElementById('loginStatsGrid').innerHTML = `
+    <div class="stat"><b>${total}</b><span>Toplam Giriş</span></div>
+    <div class="stat" style="color:var(--green)"><b style="color:var(--green)">${cCitizen}</b><span>Vatandaş Girişi</span></div>
+    <div class="stat" style="color:var(--blue)"><b style="color:var(--blue)">${cGov}</b><span>Belediye Girişi</span></div>
+    <div class="stat" style="color:#c8449c"><b style="color:#c8449c">${cAdmin}</b><span>Admin Girişi</span></div>`;
+  const tbl = document.getElementById('loginLogTable');
+  if(!LOGIN_LOGS.length){
+    tbl.innerHTML = `<tr><td class="admin-empty">Henüz giriş kaydı yok.</td></tr>`;
+    return;
+  }
+  tbl.innerHTML = `<tr><th>Rol</th><th>E-posta</th><th>Tarih / Saat</th></tr>` +
+    LOGIN_LOGS.slice(0,100).map(l=>`<tr>
+      <td><span class="role-pill ${l.role}">${ROLE_LABEL[l.role]||l.role}</span></td>
+      <td>${l.email}</td>
+      <td>${l.time}</td>
+    </tr>`).join('');
+}
+
+function saveAdminData(){
+  try{
+    localStorage.setItem('by_extra_users', JSON.stringify(EXTRA_USERS));
+    localStorage.setItem('by_extra_govs', JSON.stringify(EXTRA_GOVS));
+    localStorage.setItem('by_gov_messages', JSON.stringify(GOV_MESSAGES));
+  }catch(e){}
+}
+function loadAdminData(){
+  try{ const u = localStorage.getItem('by_extra_users'); if(u) EXTRA_USERS = JSON.parse(u); }catch(e){}
+  try{ const g = localStorage.getItem('by_extra_govs'); if(g) EXTRA_GOVS = JSON.parse(g); }catch(e){}
+  // eski kayıtları (tek ilçe alanı) yeni çoklu ilçe/mahalle yapısına taşı
+  EXTRA_GOVS.forEach(g=>{
+    if(!g.ilceler){ g.ilceler = g.ilce ? [g.ilce] : []; delete g.ilce; }
+    if(!g.mahalleler) g.mahalleler = [];
+  });
+  try{ const l = localStorage.getItem('by_loginlogs'); if(l) LOGIN_LOGS = JSON.parse(l); }catch(e){}
+  try{ const m = localStorage.getItem('by_gov_messages'); if(m) GOV_MESSAGES = JSON.parse(m); }catch(e){}
+}
+function saveGovMessage(){
+  const ta = document.getElementById('govMsgInput');
+  if(!ta || !govScopeName) return;
+  const text = ta.value.trim();
+  if(text) GOV_MESSAGES[govScopeName] = text; else delete GOV_MESSAGES[govScopeName];
+  saveAdminData();
+  renderTopRanking();
+  showToast(text ? "Mesajınız anasayfada paylaşıldı." : "Mesaj kaldırıldı.");
+}
+function findAccount(email){
+  if(DEMO_ACCOUNTS[email]) return DEMO_ACCOUNTS[email];
+  const u = EXTRA_USERS.find(x=>x.email===email);
+  if(u) return { password: u.password, role: 'citizen' };
+  const g = EXTRA_GOVS.find(x=>x.email===email);
+  if(g) return { password: g.password, role: 'gov' };
+  return null;
+}
+function submitLoginModal(){
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPassword').value;
+  const acc = findAccount(email);
+  if(acc && acc.password === pass){
+    closeModal('loginModal');
+    login(acc.role, email);
+  } else {
+    showToast("Kullanıcı adı veya şifre hatalı. Demo hesapları kullanabilirsin.");
+  }
+}
+
+function submitReport(){
+  const il=document.getElementById('rIl').value, ilce=document.getElementById('rIlce').value, mah=document.getElementById('rMah').value;
+  const title=document.getElementById('rTitle').value.trim(), desc=document.getElementById('rDesc').value.trim();
+  if(!title){ alert("Lütfen sorun başlığı girin."); return; }
+
+  const dup = issues.find(x => x.mah===mah && x.cat===selCat && x.status!=='done');
+  if(dup){
+    const goToExisting = confirm(
+      "Bu mahallede \"" + selCat + "\" kategorisinde zaten açık bir bildirim var:\n\n#" + dup.id + " — " + dup.title +
+      "\n\nBu sorunu desteklemek için Tamam'a basın, yine de yeni bir bildirim oluşturmak için İptal'e basın."
+    );
+    if(goToExisting){
+      closeModal('reportModal');
+      openDetail(dup.id);
+      return;
+    }
+  }
+
+  const photoInput = document.getElementById('rPhoto');
+  const file = photoInput && photoInput.files && photoInput.files[0];
+
+  const finishSubmit = (photoData) => {
+    const num = "SY-2026-" + String(100000+issues.length+Math.floor(Math.random()*900)).slice(-6);
+    const today = new Date().toISOString().slice(0,10);
+    issues.unshift({id:num, il, ilce, mah, cat:selCat, title, desc: desc||"Açıklama girilmedi.", status:"open", date:today, ts:Date.now(), gov:"", photo:photoData||"", votes:0, history:[{status:"open",date:today}]});
+    save();
+    closeModal('reportModal');
+    document.getElementById('rTitle').value=""; document.getElementById('rDesc').value="";
+    if(photoInput) photoInput.value = "";
+    renderAll();
+    if(role==='gov') renderGovStats();
+    showToast("Bildirim alındı: #" + num);
+  };
+
+  if(file){
+    const reader = new FileReader();
+    reader.onload = e => finishSubmit(e.target.result);
+    reader.readAsDataURL(file);
+  } else {
+    finishSubmit("");
+  }
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block';
+  setTimeout(()=>t.style.display='none', 2800);
+}
+
+function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+function save(){ try{ localStorage.setItem('by_issues', JSON.stringify(issues)); }catch(e){} }
+
+function getVotedIds(){
+  try{ const raw = localStorage.getItem('by_votes'); return raw ? JSON.parse(raw) : []; }catch(e){ return []; }
+}
+function hasVoted(id){ return getVotedIds().includes(id); }
+function toggleVote(id){
+  const i = issues.find(x=>x.id===id);
+  if(!i) return;
+  const voted = getVotedIds();
+  const idx = voted.indexOf(id);
+  if(idx === -1){
+    voted.push(id);
+    i.votes = (i.votes||0) + 1;
+  } else {
+    voted.splice(idx,1);
+    i.votes = Math.max(0, (i.votes||0) - 1);
+  }
+  try{ localStorage.setItem('by_votes', JSON.stringify(voted)); }catch(e){}
+  save();
+  renderAll();
+  if(document.getElementById('detailModal').classList.contains('show')) openDetail(id);
+}
+function load(){
+  seed();
+  try{ const raw = localStorage.getItem('by_issues'); if(raw){ const saved = JSON.parse(raw); if(Array.isArray(saved) && saved.length) issues = saved; } }catch(e){}
+}
+
+load();
+loadAdminData();
+initLocSelectors();
+renderLandingNodes();
+renderTopRanking();
+try{
+  const savedRole = localStorage.getItem('by_role');
+  if(savedRole === 'citizen' || savedRole === 'gov' || savedRole === 'admin'){
+    role = savedRole;
+    currentEmail = localStorage.getItem('by_email') || null;
+    if(role === 'gov') applyGovScope(currentEmail);
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('appRoot').classList.add('show');
+    applyRole();
+    setPageTitle(role === 'admin' ? "Admin" : role === 'gov' ? "Belediye" : "Vatandaş");
+  }
+}catch(e){}
+renderAll();
+</script>
+</body>
+</html>
